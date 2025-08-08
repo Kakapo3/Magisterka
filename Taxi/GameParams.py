@@ -2,20 +2,28 @@ import random
 
 WINDOW_HEIGHT = 800
 WINDOW_WIDTH = 800
-ROWS = 2
-COLS = 2
+ROWS = 8
+COLS = 8
 BLOCK = WINDOW_WIDTH // ROWS
 
 
-playerX = 1
-playerY = 1
+startingPlayerX = 1
+startingPlayerY = 1
 
-passengerX = random.randrange(0, COLS)
-passengerY = random.randrange(0, ROWS)
+startingPassengerX = 2
+startingPassengerY = 1
 
-destinationX = random.randrange(0, COLS)
-destinationY = random.randrange(0, ROWS)
+startingDestinationX = 6
+startingDestinationY = 5
 
 passengerPickedUp = False
 
-board = [[0 for x in range(COLS)] for y in range(ROWS)]
+board = [[[] for x in range(COLS)] for y in range(ROWS)]
+
+board[startingPlayerY][startingPlayerX].append(1)
+board[startingPassengerY][startingPassengerX].append(2)
+board[startingDestinationY][startingDestinationX].append(3)
+
+board[3][3].append(4)
+board[3][4].append(4)
+board[3][5].append(4)

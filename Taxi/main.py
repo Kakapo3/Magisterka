@@ -19,7 +19,7 @@ while running:
 
     updateBoard()
     updateWindow()
-    time.sleep(1)
+    #time.sleep(1)
     move = getRandomLegalMove()
     print(move)
     moveEffect(move)
