@@ -2,19 +2,19 @@ import random
 
 WINDOW_HEIGHT = 800
 WINDOW_WIDTH = 800
-ROWS = 8
-COLS = 8
+ROWS = 4
+COLS = 4
 BLOCK = WINDOW_WIDTH // ROWS
 
 
-startingPlayerX = 1
-startingPlayerY = 1
+startingPlayerX = 3
+startingPlayerY = 3
 
-startingPassengerX = 2
-startingPassengerY = 1
+startingPassengerX = 0
+startingPassengerY = 0
 
-startingDestinationX = 6
-startingDestinationY = 5
+startingDestinationX = 0
+startingDestinationY = 3
 
 passengerPickedUp = False
 
@@ -24,6 +24,6 @@ board[startingPlayerY][startingPlayerX].append(1)
 board[startingPassengerY][startingPassengerX].append(2)
 board[startingDestinationY][startingDestinationX].append(3)
 
-board[3][3].append(4)
-board[3][4].append(4)
-board[3][5].append(4)
+board[1][0].append(4)
+board[2][1].append(4)
+board[1][2].append(4)

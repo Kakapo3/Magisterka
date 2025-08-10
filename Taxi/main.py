@@ -10,18 +10,14 @@ print("Hello")
 
 pygame.init()
 
-
-spawnPlayer()
-spawnPassengerAndDestination()
-
 running = True
 while running:
 
-    updateBoard()
+    #updateBoard()
     updateWindow()
     #time.sleep(1)
     move = getRandomLegalMove()
-    print(move)
+    #print(move)
     moveEffect(move)
 
     for event in pygame.event.get():

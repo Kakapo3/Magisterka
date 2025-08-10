@@ -19,6 +19,18 @@ def getRandomLegalMove():
         moves.remove(0) # Can't go left
     if playerY == GameParams.ROWS-1:
         moves.remove(2) # Can't go right
+    if GameParams.passengerPickedUp:
+        moves.remove(4) # Can't pick up when already picked up
+    if not GameParams.passengerPickedUp:
+        moves.remove(5) # Can't drop when not picked up
+    if playerX > 0:
+        if 4 in GameParams.board[playerY][playerX-1]: moves.remove(3)
+    if playerX < GameParams.COLS-1:
+        if 4 in GameParams.board[playerY][playerX+1]: moves.remove(1)
+    if playerY > 0:
+        if 4 in GameParams.board[playerY-1][playerX]: moves.remove(0)
+    if playerY < GameParams.ROWS-1:
+        if 4 in GameParams.board[playerY+1][playerX]: moves.remove(2)
 
     return random.choice(moves)
 
@@ -29,10 +41,10 @@ def moveEffect(move):
 
 def movePlayer(move):
     playerX, playerY = getEntityPos(GameParams.board, 1)
-    GameParams.board[playerY][playerX] = 0
-    if move == 0:   GameParams.board[playerY+1][playerX].append(1)
+    GameParams.board[playerY][playerX].remove(1)
+    if move == 0:   GameParams.board[playerY-1][playerX].append(1)
     elif move == 1: GameParams.board[playerY][playerX+1].append(1)
-    elif move == 2: GameParams.board[playerY-1][playerX].append(1)
+    elif move == 2: GameParams.board[playerY+1][playerX].append(1)
     elif move == 3: GameParams.board[playerY][playerX-1].append(1)
 
 def pickUpPassenger():
@@ -40,26 +52,23 @@ def pickUpPassenger():
     passengerX, passengerY = getEntityPos(GameParams.board, 2)
     if playerX == passengerX and playerY == passengerY:
         GameParams.passengerPickedUp = True
+        GameParams.board[playerY][playerX].remove(2)
 
 def dropOffPassenger():
     playerX, playerY = getEntityPos(GameParams.board, 1)
-    destinationX, destinationY = getEntityPos(GameParams.board, 2)
+    destinationX, destinationY = getEntityPos(GameParams.board, 3)
     if GameParams.passengerPickedUp and playerX == destinationX and playerY == destinationY:
         print("YIPEEE!")
         GameParams.passengerPickedUp = False
-        spawnPassengerAndDestination()
+        spawnPlayer()
+        spawnPassenger()
 
 
 def spawnPlayer():
-    GameParams.playerX = random.randrange(GameParams.COLS)
-    GameParams.playerY = random.randrange(GameParams.ROWS)
+    playerX, playerY = getEntityPos(GameParams.board, 1)
+    GameParams.board[playerY][playerX].remove(1)
+    GameParams.board[GameParams.startingPlayerY][GameParams.startingPlayerX].append(1)
 
-def spawnPassengerAndDestination():
-    GameParams.passengerX = random.randrange(0, GameParams.COLS)
-    GameParams.passengerY = random.randrange(0, GameParams.ROWS)
+def spawnPassenger():
+    GameParams.board[GameParams.startingPassengerY][GameParams.startingPassengerX].append(2)
 
-    GameParams.destinationX = random.randrange(0, GameParams.COLS)
-    GameParams.destinationY = random.randrange(0, GameParams.ROWS)
-    while GameParams.passengerX == GameParams.destinationX and GameParams.passengerY == GameParams.destinationY:
-        GameParams.destinationX = random.randrange(0, GameParams.COLS)
-        GameParams.destinationY = random.randrange(0, GameParams.ROWS)

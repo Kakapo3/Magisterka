@@ -32,7 +32,7 @@ def drawDestination(x, y):
                                                  GameParams.BLOCK))
 
 def drawWall(x, y):
-    pygame.draw.rect(screen, 'Grey', pygame.Rect(x * GameParams.BLOCK,
+    pygame.draw.rect(screen, 'White', pygame.Rect(x * GameParams.BLOCK,
                                                  y * GameParams.BLOCK,
                                                  GameParams.BLOCK,
                                                  GameParams.BLOCK))
@@ -40,8 +40,9 @@ def drawWall(x, y):
 def drawBoardEntities(board):
     for col in range(len(board)):
         for row in range(len(board[col])):
-            match board[col][row]:
-                case 1: drawPlayer(row, col)
-                case 2: drawPassenger(row, col)
-                case 3: drawDestination(row, col)
-                case 4: drawWall(row, col)
+            for entity in board[col][row]:
+                match entity:
+                    case 1: drawPlayer(row, col)
+                    case 2: drawPassenger(row, col)
+                    case 3: drawDestination(row, col)
+                    case 4: drawWall(row, col)
