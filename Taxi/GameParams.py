@@ -16,7 +16,11 @@ startingPassengerY = 0
 startingDestinationX = 0
 startingDestinationY = 3
 
+move = 0
+
 passengerPickedUp = False
+
+passengerDelivered = False
 
 board = [[[] for x in range(COLS)] for y in range(ROWS)]
 

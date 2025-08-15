@@ -19,10 +19,6 @@ def getRandomLegalMove():
         moves.remove(0) # Can't go left
     if playerY == GameParams.ROWS-1:
         moves.remove(2) # Can't go right
-    if GameParams.passengerPickedUp:
-        moves.remove(4) # Can't pick up when already picked up
-    if not GameParams.passengerPickedUp:
-        moves.remove(5) # Can't drop when not picked up
     if playerX > 0:
         if 4 in GameParams.board[playerY][playerX-1]: moves.remove(3)
     if playerX < GameParams.COLS-1:
@@ -48,20 +44,20 @@ def movePlayer(move):
     elif move == 3: GameParams.board[playerY][playerX-1].append(1)
 
 def pickUpPassenger():
-    playerX, playerY = getEntityPos(GameParams.board, 1)
-    passengerX, passengerY = getEntityPos(GameParams.board, 2)
-    if playerX == passengerX and playerY == passengerY:
-        GameParams.passengerPickedUp = True
-        GameParams.board[playerY][playerX].remove(2)
+    if not GameParams.passengerPickedUp:
+        playerX, playerY = getEntityPos(GameParams.board, 1)
+        passengerX, passengerY = getEntityPos(GameParams.board, 2)
+        if playerX == passengerX and playerY == passengerY:
+            GameParams.passengerPickedUp = True
+            GameParams.board[playerY][playerX].remove(2)
 
 def dropOffPassenger():
-    playerX, playerY = getEntityPos(GameParams.board, 1)
-    destinationX, destinationY = getEntityPos(GameParams.board, 3)
-    if GameParams.passengerPickedUp and playerX == destinationX and playerY == destinationY:
-        print("YIPEEE!")
-        GameParams.passengerPickedUp = False
-        spawnPlayer()
-        spawnPassenger()
+    if GameParams.passengerPickedUp:
+        playerX, playerY = getEntityPos(GameParams.board, 1)
+        destinationX, destinationY = getEntityPos(GameParams.board, 3)
+        if playerX == destinationX and playerY == destinationY:
+            print("YIPEEE!")
+            GameParams.passengerDelivered = True
 
 
 def spawnPlayer():
@@ -71,4 +67,11 @@ def spawnPlayer():
 
 def spawnPassenger():
     GameParams.board[GameParams.startingPassengerY][GameParams.startingPassengerX].append(2)
+
+def maybeRestart():
+    if GameParams.passengerDelivered:
+        spawnPlayer()
+        spawnPassenger()
+        GameParams.passengerPickedUp = False
+        GameParams.passengerDelivered = False
 
