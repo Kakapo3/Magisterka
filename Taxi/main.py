@@ -18,6 +18,10 @@ qLearningParams.previousState = qLearning.getState(GameParams.board)
 
 running = True
 moveCounter = 0
+
+respawnPassenger()
+respawnDestination()
+
 while running:
     qLearningParams.previousState = qLearningParams.currentState
     updateWindow()
@@ -28,13 +32,11 @@ while running:
     getReward()
     learn()
     reduceExplorationRate()
-    print(qLearningParams.reward)
-    print(qLearningParams.qTable)
 
     maybeRestart()
     moveCounter += 1
 
-    if moveCounter >= 10000:
+    if moveCounter >= 100000:
         time.sleep(0.2)
 
     for event in pygame.event.get():

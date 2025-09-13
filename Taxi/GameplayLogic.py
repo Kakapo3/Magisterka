@@ -2,13 +2,12 @@ import random
 
 import GameParams
 
-def getEntityPos(board, id):
+def getEntityPos(board, elem_id):
     for col in range(len(board)):
         for row in range(len(board[col])):
-            if id in board[col][row]:
+            if elem_id in board[col][row]:
                 return row, col
-    print("ERROR getEntityPos")
-    return None
+    return False
 
 
 def getRandomLegalMove():
@@ -50,13 +49,27 @@ def spawnPlayer():
     GameParams.board[playerY][playerX].remove(1)
     GameParams.board[GameParams.startingPlayerY][GameParams.startingPlayerX].append(1)
 
-def spawnPassenger():
-    GameParams.board[GameParams.startingPassengerY][GameParams.startingPassengerX].append(2)
+def respawnPassenger():
+    while getEntityPos(GameParams.board, 2):
+        GameParams.board[getEntityPos(GameParams.board, 2)[1]][getEntityPos(GameParams.board, 2)[0]].remove(2)
+    GameParams.passenger_id = random.choice(GameParams.POSSIBLE_SPAWNS)
+    passenger_coords = GameParams.POSSIBLE_SPAWN_POINTS[GameParams.passenger_id - 1]
+    GameParams.board[passenger_coords[0]][passenger_coords[1]].append(2)
+
+def respawnDestination():
+    while getEntityPos(GameParams.board, 3):
+        GameParams.board[getEntityPos(GameParams.board, 3)[1]][getEntityPos(GameParams.board, 3)[0]].remove(3)
+    GameParams.destination_id = random.choice(GameParams.POSSIBLE_SPAWNS)
+    while GameParams.destination_id == GameParams.passenger_id:
+        GameParams.destination_id = random.choice(GameParams.POSSIBLE_SPAWNS)
+    destination_coords = GameParams.POSSIBLE_SPAWN_POINTS[GameParams.destination_id - 1]
+    GameParams.board[destination_coords[0]][destination_coords[1]].append(3)
 
 def maybeRestart():
     if GameParams.passengerDelivered:
-        spawnPlayer()
-        spawnPassenger()
+        #spawnPlayer()
+        respawnPassenger()
+        respawnDestination()
         GameParams.passengerPickedUp = False
         GameParams.passengerDelivered = False
 

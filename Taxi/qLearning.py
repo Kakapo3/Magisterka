@@ -5,7 +5,7 @@ import GameplayLogic
 import qLearningParams
 
 
-# qTable = [[[[px, py, passenger], action], reward], [[[px, py, passenger], action], reward], ...]
+# qTable = [[[[px, py, passenger_id, destination_id], action], reward], [[[px, py, passenger], action], reward], ...]
 
 def stateActionInQtable(stateAction):
     for stateActionReward in qLearningParams.qTable:
@@ -37,8 +37,8 @@ def getQtableReward(stateAction):
 
 def getState(board):
     px, py = GameplayLogic.getEntityPos(board, 1)
-    passenger = 1 if GameParams.passengerPickedUp else 0
-    return [px, py, passenger]
+    passenger = 0 if GameParams.passengerPickedUp else GameParams.passenger_id
+    return [px, py, passenger, GameParams.destination_id]
 
 def chooseMove():
     roll = random.random()
@@ -51,9 +51,8 @@ def reduceExplorationRate():
     qLearningParams.explorationRate *= 0.999
 
 def getReward():
-    print(qLearningParams.previousState, GameParams.move, qLearningParams.currentState)
     if GameParams.passengerDelivered: reward = 100
-    elif qLearningParams.currentState[2] == 1 and qLearningParams.previousState[2] == 0: reward = 50
+    elif qLearningParams.currentState[2] == 0 and qLearningParams.previousState[2] != 0: reward = 50
     elif GameParams.move == 4 or GameParams.move == 5: reward = -50
     elif qLearningParams.currentState[0] == qLearningParams.previousState[0] and qLearningParams.currentState[1] == qLearningParams.previousState[1]: reward = -25
     else: reward = -1

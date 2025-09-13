@@ -7,6 +7,7 @@ COLS = 8
 BLOCK = WINDOW_WIDTH // ROWS
 
 POSSIBLE_MOVES = [0, 1, 2, 3, 4, 5] # 0 up, 1 right, 2 down, 3 left , 4 pick up, 5 drop
+POSSIBLE_SPAWNS = [1, 2, 3, 4]
 
 startingPlayerX = 0
 startingPlayerY = 0
@@ -19,8 +20,12 @@ startingDestinationY = 7
 
 move = 0
 
-passengerPickedUp = False
+POSSIBLE_SPAWN_POINTS = [[1, 3], [3, 7], [2, 1], [5, 4]]
 
+passenger_id = 0
+destination_id = 0
+
+passengerPickedUp = False
 passengerDelivered = False
 
 board = [[[] for x in range(COLS)] for y in range(ROWS)]
@@ -32,10 +37,13 @@ board[startingDestinationY][startingDestinationX].append(3)
 board[1][5].append(4)
 board[2][4].append(4)
 board[4][2].append(4)
-board[7][6].append(4)
 board[3][4].append(4)
 board[2][4].append(4)
 board[2][2].append(4)
 board[3][2].append(4)
 board[6][2].append(4)
 board[3][3].append(4)
+board[5][2].append(4)
+board[5][5].append(4)
+board[4][5].append(4)
+board[6][5].append(4)
