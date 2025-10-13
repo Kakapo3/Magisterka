@@ -23,4 +23,4 @@ memory = deque(maxlen=50000)
 
 batchSize = 100
 
-exploRateBase = 1000
+exploRateBase = 10
