@@ -7,7 +7,7 @@ COLS = 8
 BLOCK = WINDOW_WIDTH // ROWS
 
 POSSIBLE_MOVES = [0, 1, 2, 3, 4, 5] # 0 up, 1 right, 2 down, 3 left , 4 pick up, 5 drop
-POSSIBLE_SPAWNS = [1, 2, 3, 4]
+POSSIBLE_SPAWNS = [1, 2, 3, 4, 5, 6]
 
 startingPlayerX = 0
 startingPlayerY = 0
@@ -18,9 +18,13 @@ startingPassengerY = 4
 startingDestinationX = 7
 startingDestinationY = 7
 
+moveCounter = 0
+maxMoves = 1000000
+#exploRateDiscount = 1/maxMoves
 move = 0
 
-POSSIBLE_SPAWN_POINTS = [[1, 3], [3, 7], [2, 1], [5, 4]]
+
+POSSIBLE_SPAWN_POINTS = [[1, 3], [3, 7], [2, 1], [5, 4], [0, 0], [7, 7]]
 
 passenger_id = 0
 destination_id = 0
