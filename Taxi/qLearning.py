@@ -3,6 +3,7 @@ import random
 import GameParams
 import GameplayLogic
 import dqLearning
+import dqnParams
 import qLearningParams
 
 
@@ -44,7 +45,7 @@ def getState(board):
 def chooseMove():
     roll = random.random()
     #if roll < qLearningParams.explorationRate:
-    if roll < dqLearning.getExploRate(1000):
+    if roll < dqLearning.getExploRate(dqnParams.exploRateBase):
         return GameplayLogic.getRandomLegalMove()
     else:
         return getQtableBestMove(qLearningParams.currentState)[0]

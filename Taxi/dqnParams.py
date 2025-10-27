@@ -16,11 +16,25 @@ model = nn.Sequential(
             nn.Linear(64, action_size)
         )
 
+model_target = nn.Sequential(
+            nn.Linear(state_size, 64),
+            nn.ReLU(),
+            nn.Linear(64, 64),
+            nn.ReLU(),
+            nn.Linear(64, 64),
+            nn.ReLU(),
+            nn.Linear(64, action_size)
+        )
+model_target.load_state_dict(model.state_dict())
+
 optimizer = optim.Adam(model.parameters(), lr=0.01)
 criterion = nn.MSELoss()
 
 memory = deque(maxlen=50000)
 
-batchSize = 100
+batchSize = 64
 
-exploRateBase = 10
+exploRateBase = 100
+minExploRate = 0.1
+
+target_update_freq = 1000

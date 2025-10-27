@@ -43,7 +43,7 @@ def encode_state(state):
     return state_vector
 
 
-def sample_minibatch(memory, batch_size, positive_fraction=0.5):
+def sample_minibatch(memory, batch_size, positive_fraction=0.1):
     # Split memory into positive and non-positive samples
     positive_samples = [m for m in memory if m[2] > 0]
     negative_samples = [m for m in memory if m[2] <= 0]
@@ -70,14 +70,14 @@ def learn():
     if len(dqnParams.memory) < dqnParams.batchSize:
         return
 
-    minibatch = sample_minibatch(dqnParams.memory, dqnParams.batchSize, positive_fraction=0.5)
+    minibatch = sample_minibatch(dqnParams.memory, dqnParams.batchSize, positive_fraction=0.1)
     states = torch.stack([m[0] for m in minibatch])
     actions = torch.LongTensor([m[1] for m in minibatch])
     rewards = torch.FloatTensor([m[2] for m in minibatch])
     next_states = torch.stack([m[3] for m in minibatch])
 
     current_q = dqnParams.model(states).gather(1, actions.unsqueeze(1)).squeeze(1)
-    max_next_q = dqnParams.model(next_states).max(1)[0]
+    max_next_q = dqnParams.model_target(next_states).max(1)[0] # Use target network
     target_q = rewards + qLearningParams.gamma * max_next_q
 
     loss = dqnParams.criterion(current_q, target_q.detach())
@@ -94,4 +94,8 @@ def positive_reward_percentage():
     return (positive_count / len(dqnParams.memory)) * 100
 
 def getExploRate(base):
-    return -(pow(base, GameParams.moveCounter/GameParams.maxMoves - 1)) + 1
+    return max(-(pow(base, GameParams.moveCounter/GameParams.maxMoves - 1)) + 1, dqnParams.minExploRate)
+
+def updateTargetNetwork():
+    dqnParams.model_target.load_state_dict(dqnParams.model.state_dict())
+    print("Updated network")

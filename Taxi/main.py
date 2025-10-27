@@ -9,8 +9,10 @@ import dqLearning
 import dqnParams
 import qLearning
 import qLearningParams
+import testing
 from GameplayDisplay import *
 from qLearning import *
+from testing import currScore
 
 print("Hello")
 
@@ -21,7 +23,6 @@ def runGameQLearning():
     qLearningParams.previousState = qLearning.getState(GameParams.board)
 
     running = True
-    moveCounter = 0
 
     respawnPassenger()
     respawnDestination()
@@ -29,20 +30,24 @@ def runGameQLearning():
     while running:
         qLearningParams.previousState = qLearningParams.currentState
         updateWindow()
-        #time.sleep(0.2)
         GameParams.move = qLearning.chooseMove()
         moveEffect(GameParams.move)
         qLearningParams.currentState = qLearning.getState(GameParams.board)
         qLearning.getReward()
         qLearning.learn()
-        qLearning.reduceExplorationRate()
+
+        print(GameParams.moveCounter/GameParams.maxMoves)
+        #print(dqLearning.getExploRate(dqnParams.exploRateBase))
+
+        testing.test()
 
         maybeRestart()
-        moveCounter += 1
+        GameParams.moveCounter += 1
 
+        if GameParams.moveCounter == GameParams.maxMoves:
+            testing.generatePlot()
 
-
-        if moveCounter >= 500000:
+        if GameParams.moveCounter >= GameParams.maxMoves:
             time.sleep(0.2)
 
         for event in pygame.event.get():
@@ -74,12 +79,18 @@ def runGameDeepQLearning():
         qLearning.getReward()
         dqLearning.learn()
         #qLearning.reduceExplorationRate()
+        if GameParams.moveCounter % dqnParams.target_update_freq == 0: dqLearning.updateTargetNetwork()
 
         print(GameParams.moveCounter/GameParams.maxMoves)
         print(dqLearning.getExploRate(dqnParams.exploRateBase))
 
+        testing.test()
+
         maybeRestart()
         GameParams.moveCounter += 1
+
+        if GameParams.moveCounter == GameParams.maxMoves:
+            testing.generatePlot()
 
         if GameParams.moveCounter >= GameParams.maxMoves:
             time.sleep(0.2)

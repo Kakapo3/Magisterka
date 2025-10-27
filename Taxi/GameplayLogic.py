@@ -1,6 +1,8 @@
 import random
 
 import GameParams
+import testing
+
 
 def getEntityPos(board, elem_id):
     for col in range(len(board)):
