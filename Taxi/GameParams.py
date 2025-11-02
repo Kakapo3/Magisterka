@@ -2,18 +2,18 @@ import random
 
 WINDOW_HEIGHT = 800
 WINDOW_WIDTH = 800
-ROWS = 6
-COLS = 6
+ROWS = 8
+COLS = 8
 BLOCK = WINDOW_WIDTH // ROWS
 
 POSSIBLE_MOVES = [0, 1, 2, 3, 4, 5] # 0 up, 1 right, 2 down, 3 left , 4 pick up, 5 drop
 
 moveCounter = 0
-maxMoves = 250000
+maxMoves = 2500000
 #exploRateDiscount = 1/maxMoves
 move = 0
 
-POSSIBLE_SPAWN_POINTS = [[0, 0], [0, 2], [3, 1], [4, 5], [5, 4]]
+POSSIBLE_SPAWN_POINTS = [[0, 0], [0, 2], [3, 1], [4, 5], [5, 4], [7, 7]]
 POSSIBLE_SPAWNS = list(range(1, len(POSSIBLE_SPAWN_POINTS) + 1))
 
 startingPlayerX = POSSIBLE_SPAWN_POINTS[0][1]
@@ -47,8 +47,9 @@ board[0][4].append(4)
 board[1][4].append(4)
 board[4][4].append(4)
 board[5][5].append(4)
-#board[3][6].append(4)
-#board[6][7].append(4)
-#board[7][2].append(4)
-#board[6][5].append(4)
-#board[7][5].append(4)
+#8x8
+board[3][6].append(4)
+board[6][7].append(4)
+board[7][2].append(4)
+board[6][5].append(4)
+board[7][5].append(4)
