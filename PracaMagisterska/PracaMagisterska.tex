@@ -5,6 +5,8 @@
 \usepackage[T1]{fontenc}           % Kodowanie fontów
 \usepackage[polish]{babel}         % Język polski
 \usepackage{dirtytalk}
+\usepackage[round,longnamesfirst]{natbib}
+\bibliographystyle{plainnat}
 
 % USTAWIENIA STRONY
 \usepackage{geometry}
@@ -44,18 +46,7 @@
 
 \subsection{Motywacja}
 
-W dzisiejszych czasach nieiwele jest dziedzin nauki które rozwijają się tak szybko jak sztuczna inteligencja. Technologie, które jeszcze dekadę czy dwie temu byłyby uznane za science fiction, używane są dzisiaj na porządku dziennym. Rozwój takich narzędzi jak ChatGPT czy Copilot całkowicie odmieniły sposób w jaki ludzie rozwiązują problemy, czy to w pracy czy poza nią. Jedną z dziedzin nauczania maszynowego jest Nauczanie przez Wzmacznianie (eng. Reinforcement Learning)
-
-\subsection{Historia nauczania przez wzmacnianie}
-
-Współczesne nauczanie przez wzmacnianie jest wynikiem połączenia kilku dziedzin nauki i ich aplikacji dla programów komputerowych. 
-Jedną z tch dziedzin jest psychologia, a konkretnie badania mające ustalić czy zwierzęta potrawią się uczyć, a jeżeli tak to na podstawie jakiego mechanizmu. Już na początku XX wieku naukowcy znajdowali dowody na to że zwierzęta faktycznie uczą się na podstawie doświadczeń
-
-\textit{\say{Z kilku odpowiedzi na tę samą sytuację te, które są połączone z satysfakcją zwierzęcia lub następują bezpośrednio po niej, będą, przy innych równych warunkach, silniej powiązane z sytuacją, tak że gdy sytuacja się powtórzy, będą się częściej powtarzać; te, które są połączone z dyskomfortem zwierzęcia lub następują bezpośrednio po nim, będą, przy innych równych warunkach, słabiej powiązane z tą sytuacją, tak że gdy sytuacja się powtórzy, będą się rzadziej powtarzać. Im większa satysfakcja lub dyskomfort, tym silniejsze lub słabsze jest połączenie.} - (Thorndike, 1911, p. 244)} \cite{texbook}
-
-
-
-Kolejną dziedziną nauki która przyczyniła się do rozwoju nauczania przez wzmacnianie jest Teoria Sterowania Optymalnego (eng. Optimal Control Theory). Jednym z naukowców zajmujących się tym tematem w latach 50-tch XX wieku był Richard Bellman. Jego wkład przyczynił się do rozwoju programowania dynamicznego, zdefiniowania Równania Bellmana oraz w końcu na ich podstawie do rozwoju nauczania przez wzmacnianie.
+W dzisiejszych czasach nieiwele jest dziedzin nauki które rozwijają się tak szybko jak sztuczna inteligencja. Technologie, które jeszcze dekadę czy dwie temu byłyby uznane za science fiction, używane są dzisiaj na porządku dziennym. Rozwój takich narzędzi jak ChatGPT czy Copilot całkowicie odmieniły sposób w jaki ludzie rozwiązują problemy, czy to w pracy czy poza nią. Jedną z dziedzin nauczania maszynowego jest Nauczanie przez Wzmacznianie (ang. Reinforcement Learning, RL)
 
 \subsection{Nawiązanie do natury}
 
@@ -70,9 +61,221 @@ Są to życiowe, uproszczone przykłady, ale dobrze pokazują sposób działania
 Możemy więc zdefiniować pewną intuicję, która pozwoli zrozumieć nam na czym polega nauczanie ze wzmacnieniem. Podmiot (nazywany później "agentem") znajduje się w pewnej sytuacji (stanie) i ma do podjęcia decyzję (akcję). Za tę akcję dostaje następnie nagrodę lub karę i ją zapamiętuje. Na podstawie tego może w przyszłości podjąć decyzję, kiedy znajdzie się w tym stanie ponownie w przyszłości to czy powinien podjąć tę samą decyzję.
 W późniejszych rozdziałach przedstawiona zostanie bardziej dokładna i rygorystyczna definicja, jednakże ta intuicja pozwoli nam lepiej zrozumieć esencję nauczania ze wzmacnianiem, zanim przejdziemy do bardziej matematycznych, statystycznych i programistycznych rozważań.
 
-\begin{thebibliography}{9}
-\bibitem{texbook}
-Thorndike, E.L. (1911) Animal Intelligence: Experimental Studies. MacMillan, New York.
-\end{thebibliography}
+
+\section{Historia nauczania przez wzmacnianie}
+
+\subsection{Początki}
+
+Współczesne nauczanie przez wzmacnianie jest wynikiem połączenia kilku dziedzin nauki i ich aplikacji dla programów komputerowych. 
+Jedną z tch dziedzin jest psychologia, a konkretnie badania mające ustalić czy zwierzęta potrawią się uczyć, a jeżeli tak to na podstawie jakiego mechanizmu. Już na początku XX wieku naukowcy znajdowali dowody na to że zwierzęta faktycznie uczą się na podstawie doświadczeń
+
+\textit{\say{Z kilku odpowiedzi na tę samą sytuację te, które są połączone z satysfakcją zwierzęcia lub następują bezpośrednio po niej, będą, przy innych równych warunkach, silniej powiązane z sytuacją, tak że gdy sytuacja się powtórzy, będą się częściej powtarzać; te, które są połączone z dyskomfortem zwierzęcia lub następują bezpośrednio po nim, będą, przy innych równych warunkach, słabiej powiązane z tą sytuacją, tak że gdy sytuacja się powtórzy, będą się rzadziej powtarzać. Im większa satysfakcja lub dyskomfort, tym silniejsze lub słabsze jest połączenie.} } \citet{thorndike2017animal}
+
+Kolejną dziedziną nauki która przyczyniła się do rozwoju nauczania przez wzmacnianie jest Teoria Sterowania Optymalnego (eng. Optimal Control Theory). Jednym z naukowców zajmujących się tym tematem w latach 50-tch XX wieku był Richard Bellman. Jego wkład przyczynił się do rozwoju programowania dynamicznego, zdefiniowania Równania Bellmana oraz w końcu na ich podstawie do rozwoju nauczania przez wzmacnianie.
+
+Dziedzina ta z początku nie cieszyła się zbytnią popularnością, jednak w końcu ktoś postanowił dogłębniej zbadać nauczanie przez wzmacnianie i odkryć jego prawdziwy potencjał.
+
+\subsection{Odrodzenie}
+
+W 1979 roku, Richard S. Sutton i Andrew G. Barto pracujący w University of Massachusetts zaczęli pracę nad projektem opartym o teorię A. Harry Klopfa "heterostatic theory of adaptive systems". Zdali sobie sprawę że nauczanie przez wzmacnianie, lub jak oni to nazywali "nauczanie hedonistyczne", kryje w sobie ogromne możliwości. W poprzednich latach wiekszość naukowców pracujących nad sztuczną inteligencją najczęściej ignorowało nauczanie przez wzmacnianie i szybko przechodzili do innych dziedzin, takich jak klasyfikacja, nauczanie nadzorowane lub dziedzin całkiem niezwiązanych ze sztuczną inteligencją. Z perspektywy czasu wiemy jednak że nauczanie przez wzmacnianie ogromnie pomogło całej dziedzinie sztucznej inteligencji, zwłaszcza po rozwoju komputerów i wzroście możliwości obliczeniowych. \citet{sutton1998reinforcement}
+
+\subsection{Historia zastosowań w grach}
+
+Od wczesnych lat nauczanie przez wzmacnianie znalazło wiele zastosowań. Jednym z nich była nauka grania w gry. Bardzo łatwo można przełożyć koncept "gracza"~wykonującego "ruchy"~na "agenta"~podejmującego "akcje".
+
+Jednym z pierwszych przykładów takiego zastosowania jest program grający w warcaby stworzony w 1959 roku przez Artura L. Samuela. Mimo że nazwa "nauczania przez wzmacnianie"~jeszcze nie istniała, to z perspektywy czasu możemy powiedzieć że działa on poprzez właśnie ten proces. Program Samuela stosuje metodę prób i błędów, zapamiętuje je, uczy się ze swoich poprzednich doświadczeń i stara się polepszać swoje działanie. \citet{samuel1959some}
+
+Od programu Samuela musiało minąć trochę czasu, lecz w końcu zaczęto wykorzystywać nauczanie przez wzmacnianie na większą skalę. W latach 90-tych Gerald Tesauro z IBM Thomas J. Watson Research Center opracował TD-Gammon - program do gry backgammon, który osiągał wyniki zbliżone do ówczesnych mistrzów świata. \citet{tesauro1995temporal}
+
+Jednym z nowszych przełomów dla nauczania przez wzmacnianie jest gra w szachy. Kiedy Deep Blue pokonał Garri Kasparowa w 1997 roku, nie używał on nauczania przez wzmacnianie, lecz bardziej klasycznego podejścia opierająca się na metodzie minimax połącznoego z ogromną, ręcznie zaprogramowaną funkcją oceny. \citet{hsu1999ibm}
+Nauczanie przez wzmacnianie zostało w szachach spopularyzowane dopiero w 2017 poprzez porgram AlphaZero od Google DeepMind. \citet{zahavy2023diversifying} Po 9 godzinach treningu w grach z samym sobą pokonał on uważany wtedy za najsilniejszy silnik szachowy - Stockfish 8. \citet{bratko2018alphazero} Od tamtego czasu, większość silników szachowych, w tym Stockfish, zaczęły używać nauczania przez wzmacnianie.
+
+W tym samym roku AlphaZero pokonał również najlepszy silnik do gry w shogi - Elmo \citet{silver2017mastering}, oraz rok wcześniej pokonał on najlepszego gracza na świecie w grze Go. \citet{granter2017alphago}
+
+\section{Czym jest nauczanie przez wzmacnianie}
+
+Czym w sumie jest nauczanie przez wzmacnianie? Wiadomo że jest dziedziną nauczania maszynowego, ale czy możemy przypisać je do jakiegoś działu nauczania maszynowego? W dziedzinie nauczania maszynowego możemy zidentyfikować dwie duże podgrupy - nauczanie nadzorowane oraz nauczanie nienadzorowane. Czy więc nauczanie przez wzmacnianie jest podzbiorem jednej z tych grup?
+
+\subsection{Nauczanie nadzorowane}
+
+Możemy zauważyć pewne wspólne cechy z nauczaniem nadzorowanym - model uczy się za na podstawie pewnych kryteriów.  Klasycznym przykładem nauczania nadzorowanego jest identyfikacja przedmiotów na zdjęciach. Tam, model uczy się przewidując przedmiot na obrazie. Po takiej klasyfikacji porównuje on swoje przewidywania z etykietowanym zbiorem poprawnych odpowiedzi. Na podstawie tego które elementy przewidział poprawnie a które niepoprawnie, "uczy się"~i poprawia swój model przewidywania. 
+
+Tutaj właśnie leży różnica pomiędzy nauczaniem nadzorowanym a nauczaniem przez wzmacnianie. Mimo że podczas nauczania przez wzmacnianie agent dostaje nagrody i kary, nie mówi mu to który wybór jest "poprawny"~albo "niepoprawny". Czasem w pewnym stanie wykonanie ruchu który daje mniejszą natychmiastową nagrodę będzie prowadzić to większej nagrody w przyszłości. Agent nie dostaje listy poprawnych ruchów, tylko na podstawie doświadczeń i brania przyszłych stanów pod uwagę musi sam wywnioskować które ruchy są "poprawne".
+
+\subsection{Nauczanie nienadzorowane}
+
+Nauczanie nienadzorowane różni się od nadzorowanego tym że nie podajemy modelowi etykiet, lecz model ma sam wywniosować ze struktury danych ukryte wzorce lub grupy. Używane jest ono często na przykład do wykrywania anomalii w dużych zbiorach danych. Model nauczania nienadzorowanego dostaje sam zbiór danych, bez żadnych informacji zwrotnych i sam ma znaleść w nim wzorce.
+
+Widać tutaj wyraźną różnicę  W przeciwieństwie do nauczania nienadzorowanego, które nie dostaje informacji zwrotnych w trakcie uczenia, podczas nauczania przez wzmacnianie agent dostaje informacje na temat akcji jakie podejmuje. Nie są to może konkretne odpowiedzi "dobrze"~lub "źle", ale nie musi znajwać on ukrytych informacji na podstawie samego środowiska.
+
+\subsection{Nauczanie sekwencyjne}
+
+Kolejnym dużym elementem wyróżniającym nauczanie przez wzmacnianie od nauczania nadzorowanego lub nienadzorowanego jest fakt iż polega ono na uczeniu sekwencyjnym. Oznacza to że wybór podjęty w jednym momencie wpływa na przyszłe decyzje agenta. Jest to zasadnicza różnica od innych sposobów nauczania. Na przykład model który uczy się rozpoznawania obrazów za pomocą naczuczania nadzorowanego nie uczy się sekwencyjnie - to jak zklasyfikuje jeden obraz nie wpływa na to jak powinien zklasyfikować następny.
+
+Nauczanie przez wzmacnianie powiązuje jednak szeregi decyzji ze sobą. Jeśli agent dostanie nagrodę za daną akcję, to nie jest efekt tylko ostatniej decyzji, ale ciągu decyzji które doprowadziły go do tego punktu. Z drugiej strony nagrody są często opóźnione w czasie. Agent po podjęciu decyzji nie wie czy była ona poprawna czy zła, dowie się on tego dopiero po jakimś czasie kiedy odkryje do jakiego rezultatu ona doprowadziła. Innymi słowy decyzje agenta mają długoterminowe konsekwencje.
+
+Kolejnym elementem który odróżnia nauczania przez wzmacnianie od innych metod jest to że agent zmienia swoje własne środowisko. Przy nauczaniu nadzorowanym lub nienadzorowanym model dostaje szereg danych z których ma się uczyć i nie ma wpływu na to jakie dane dostaje. Podczan nauczania przez wzmacnanie jest inaczej. To jaką decyzję agent podejmie w danym stanie ma bezpośredni wpływ na to w jakim stanie znajdzie się w następnym kroku i przed jakim wyborem zostanie postawiony. Innymi słowy to agent wybiera swoje "dane wejściowe". Jest to właściwość która występuje jednynie w nauczaniu przez wzmacnianie.
+
+Podsumowując, największą różnicą pomiędzy nauczaniem przez wzmacnianie a nauczaniem nadzorowany i nienadzorowanym jest fakt że celem agenta jest maksymalizacja nagrody w czasie, a nie tylko tu i teraz. Agent musi wziąć pod uwagę nie tylko jaką nagrodę dostanie za obecny wybór, ale również do jakich stanów ten wybór doprowadzi oraz jakich nagrów może on się spodziewać. Ten niuans nie występuje przy innych typach nauczania, gdzie jedyne co się liczy to poprawny wybór tu i teraz. 
+
+\section{Elementy nauczania przez wzmacnianie}
+
+Poza agentem i środowiskiem, nauczanie przez wzmacnianie składa się z kilku elementów które należy poznać i zdefiniować aby zrozumieć jego sposób działania. Możemy także zauważyć tutaj porównania do biologi, z której nauczanie przez wzmacnianie bierze dużą inspirację.
+
+\subsection{Polityka}
+
+Polityka mówi agentowi jak powinien się zachować w danym stanie. Jest to w zasadzie funkcja, która danemu stanowi przypisuje konkretną akcję. Może ona przybierać różne formy, takie jak tablica stan/akcja, lub może być to sieć neuronowa, która na wejściu otrzymuje stan, a na wyjściu zwraca akcję. Czasem jest one deterministyczna, zawsze dająca ten sam wynik dla danego stanu, a czasem może być probabilistyczna. Jeśli polityka jest probabilistyczna to nazywana jest "polityką stochastyczną". Polityka leży w sercu nauczania przez wzmacnianie. Celem nauczania jest ciągłe poprawianie i ulepszanie polityki.
+
+W biologii polityce odpowiada zjawisko, które w psychologia nazywa modelem "bodziec-reakcja". Jest to zbiór zasad który mówi organizmowi jak powinien zachować się kiedy napotka dany bodziec. Najczęściej te rekacje są podświadome. Jeżeli dotkinemy gorącej kuchenki to nie musimy przeanalizować tego faktu w głowie i świadomie odsunąć ręki, nasz mózg ma zapamiętaną poprawną reakcję i sam to za nas zrobi zanim jeszcze zdamy sobie sprawę co się stało. \citet{sutton1998reinforcement}
+
+\subsection{Nagrody}
+
+System nagród definiuje cel problemu nauczania przez wzmacnianie. Po każdej akcji agent otrzymuje nagrodę, która jest reprezentowana przez liczbę. Jeżeli agent wykonuje akcję która pomaga mu zrealizować cel to dostaje większą nagrodę niż za akcje które go od celu oddalają. Całym zadaniem agenta jest zmaksymalizowanie wartości nagród które otrzymuje w czasie.
+
+W biologii jako nagrody o kary odpowiadają uczuciom przyjemności oraz bólowi. Jeżeli organizm odczuwa przujemność to jest dla niego sygnał że wykonał dobrą rzecz. Jeżeli odczuje ból to oznacza że wykonał błąd i powinien w przyszłości tej czynności unikać.
+
+\subsection{Funkcja wartości}
+
+Funkcja wartości jest używana do oceny wartości akcji w danym stanie. Przewiduje ona spodziewaną długoterminową wartość danej akcji, biorąc pod uwagę nie tylko możliwie natychmastowo największą nagrodę, ale również wszystkie przyszłe potencjalne nagrody. Często agent może znaleść się w sytuacji gdzie mniejsza natychmiastowa nagroda będzie prowadzić do większej nagrody na przestrzeni całego epizodu, zaczynając od obecnego stanu.
+
+Funkcja wartości jest o tyle ważna że to właśnie na jej podstawie agent będzie decydował jaką decyzję podjąć. Będzie wybierał akcje które maksymalizują nie natychmiastową nagrodę, ale długoterminową funkcję wartości. Jednak obliczanie funkcji wartości nie jest takie proste. Gdzie natychmiastowe nagrody za ruch są podawane prosto ze środowiska, to jak obliczyć długoterminową funkcję wartości jest o wiele bardziej skomplikowane. Problem ten leży w sercu nauczania przez wzmacnianie i wydajność różnych metod obliczania funkcji wartości jest jedną z najważniejszyk kwestii w tej dziedzinie.
+
+Nawiązując do biologii, jeśli nagroda jest natychmastowym odczuciem przyjemności lub bólu, to funkcja wartości byłaby ogólną oceną jak organizm jest zadowolony z styuacji w której się znajduje, czy obecna sytuacja może porwadzić to większej ilości przyjemności i mniejszej ilości bólu.
+
+\subsection{Model środowiska}
+
+Ostatnim elementem nauczania przez wzmacnianie jest model środowiska. Model środowiska jest rzeczą która odwzorowuje zachowanie prawdziwego środowiska i pozwala agentowi na przewidywanie przyszłych stanów i potencjalnych nagród. Dla przykładu, jeżeli agent znjaduje się w danym stanie to może przewidzieć w jakim stanie się znajdzie jeśli wykona pewną akcję. Pomaga to agentowi lepiej planować swoje akcje.
+
+Nauczanie przez wzmacnianie nie musi jednak zawierać modelu środowiska. Jeśli metoda nauczania zawiera model to jest nazywana "modelową". Jeżeli jednak metoda nie zawiera modelu środowiska i bazuje wyłącznie na metodzie prób i błędów, nazywana jest "bezmodelową". 
+
+\section{Przykład nauczania przez wzmacnianie}
+
+Aby lepiej zrozumieć jak te elementy ze sobą współpracują, najlepiej spojrzeć jak odpowiadają one przykładom nauczania przez wzmacnianie z prawdziwego życia:
+
+\subsection{Gra w szachy}
+
+\begin{description}
+
+\item[Środowisko:] Szachownica i bierki
+\item[Agent:] Gracz
+\item[Stan:] Obecna pozycja bierek na szachownicy
+\item[Akcja:] Legalny ruch w danym stanie
+\item[Nagrody:] Pozytywne za dobre ruchy (zbicie bierek, wygranie partii), negatywne za złe ruchy (strata bierek, przegranie partii)
+
+\end{description}
+
+\subsection{Robot sprzątający}
+
+\begin{description}
+
+\item[Środowisko:] Mieszkanie
+\item[Agent:] Robot
+\item[Stan:] Pozycja robota, wykryty brud, przeszkody, poziom baterii
+\item[Akcja:] Jazda prosto, skręt, zacząć odkurzać, przestać odkurzać, zatrzymać się
+\item[Nagrody:] Pozytywne za sprzątanie brudu, negatywne uderzenie w przeszkody i marnowanie energii
+
+\end{description}
+
+\subsection{System rekomendacji (np. Youtube, Netflix)}
+
+\begin{description}
+
+\item[Środowisko:] Użytkownik i jego zachowania
+\item[Agent:] Algorytm rekomendujący treści
+\item[Stan:] Historia oglądania, preferencje użytkownika, bieżący kontekst
+\item[Akcja:] Wyświetlenie konkretnej treści
+\item[Nagrody:] Pozytywne jeżeli użytkownik włączy polecane wideo i obejrzy je do końca, negatywne jeśli je pominie lub przerwie
+
+\end{description}
+
+\section{Proces decyzyjny Markowa}
+
+Do tej pory definiowaliśmy elementy nauczania przez wzmacnianie w sposób raczej nieformalny. Warto więc zapoznać się z formalną definicją nauczania przez wzmacnianie, a konkretnie to problemu który próbuje ono rozwiązać
+
+\subsection{Elementy MDP}
+
+Proces decyzyjny Markowa (ang. Markov decision process - MDP) jest formalnym matematycznym modelem podejmowania decyzji w czasie. MDP składa się z kilku elementów, które poznaliśmy przy nauczaniu przez wzmacnianie:
+
+\begin{description}
+
+\item[S:] Zbiór wszystkich możliwych stanów
+\item[A:] Zbiór możliwych akcji
+\item[P(s' | s, a):] Funkcja przejścia. Mówi ona jak zmieni się środowisko po wykonanej akcji. Jeżeli w stanie \textbf{s} wykonana zostanie akcja \textbf{a} to stan środowiska zmieni się na  \textbf{s'}
+\item[R(s, a):] Funkcja nagrody. Za wykonanie akcji \textbf{a} w stanie \textbf{s} przyznawana jest nagroda \textbf{R(s, a)}
+
+\end{description}
+
+\subsection{Własność Markowa}
+
+To co umożliwia nam stosowanie modelu nauczania przez wzmacnianie w ten sposób tzw. Własność Markowa. Mówi ona, że przyszłość modelu zależy tylko i wyłącznie od obecnego stanu i podjętej akcji, nie od przeszłości. Innymi słowy, decyzje podjęte w przeszłości nie wpływają na obecny wybór. Pozwala nam to w Funkcji Wartości brać pod uwagę jedynie obecny stan i możliwe akcje.
+
+W praktyce istnieją techniki nauczania przez wzmacnianie również dla modeli które nie spełniają własności Markowa. W takich sytuacjach stosuje się różne rozwiązania, na przykład stany które zawierają sobie dane o przeszłych akcjach. Jednak w tej pracy nie będziemy się takimi przypadkami zajmować. Wszystkie problemy które będziemy rozwiązywać będą spełniać własność Markowa.
+
+\section{Polityka - Podejście Tabularyczne}
+
+W rozdziale o polityce wspomniane zostało że może ona przybierać różne formy. Dla przypomnienia, polityka to mechanizm w jaki agent wybiera akcje które wykonuje. Innymi słowy jest to funkcja (deterministyczna lub probabilistyczna), która określia sposób wyboru akcji agenta na podstawie stanu w którym się znajduje. Przyjrzymy się jednej z najprostrzych implementacji polityki - Q-Tabela.
+
+\subsection{Q-Tabela}
+
+Q-Tablela jest prostym sposobem implementacji polityki agenta. Przypisuje ona po prostu dla każdej możliwego stanu i każdej akcji wartość tej akcji. Ważne jest tutaj do zaznaczenia że nie jest to nagroda za tę akcję, ale funkcja wartości o której mówiliśmy wcześniej.
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{ |c|c|c|c|c| } 
+ \hline
+ stan/akcja & akcja 1 & akcja 2 & akcja 3 & akcja 4 \\ 
+\hline
+stan 1 & 4 & 5 & -2 & -10 \\ 
+\hline
+stan 2 & -3 & -5 & 1 & 10 \\ 
+\hline
+stan 3 & 7 & 2 & 0 & 0 \\ 
+\hline
+stan 4 & -5 & -6 & 8 & -4 \\ 
+\hline
+stan 5 & 1 & 1 & -2 & 3 \\ 
+\hline
+\end{tabular}
+\caption{Przykładowa Q-Tabela}
+\label{tab:qtable}
+\end{table}
+
+Powyżej została przedstawiona przykładowa Q-Tabela dla pewnego środowiska które ma 5 możliwych stanów i w każdym stanie agent ma do wyboru 4 akcje. Tabela zawiera wyliczone funkcje wartości dla każdej pary stan-akcja. Celem nauczania przez wzmacnianie jest ciągłe aktualizowanie wartości w tej tabeli.
+
+\subsection{Aktualizowanie wartości Q-Tabeli}
+
+Q-Tabela z początku nie będzie oczywiście optymalna, częstym podejściem jest zaczynanie z Q-Tabelą zawierającą same zera. Jak więc możemy poprawiać jej wartości na podstawie nowych doświadczeń? Zacznijmy najpierw od najprostszego pomysłu i stopniowo będziemy go ulepszać.
+
+Weźmy najprostszy pomysł, gdzie zastępujemy wartość właśnie zdobytą nagrodą:
+
+\[ Q(s, a) \leftarrow r(s, a) \]
+
+\( Q(s, a) \) - Obecna wartość dla stanu \(s\) i akcji \(a\)
+
+\( r(s, a) \) - Nagroda za wykonanie akcji \(a\)  w stanie \(s\) 
+
+Jest to początek, ale podczas uczenia powinniśmy wziąć więcej aspektów pod uwagę niż tylko natychmastowa nagroda. Jak na razie nie uwzględniamy przyszłych stanów, do których wybór może nas dobrowadzić. Dodajmy więc wyraz, który reprezentuje wartość najlepszej akcji w następnym stanie, czyli w stanie \(s'\) 
+
+\[ Q(s, a) \leftarrow  r(s, a) + \max_{a'}Q(s', a')\]
+
+\(s'\) - Stan po wykonaniu akcji \(a\) w stanie \(s\) \newline
+
+Skąd jednak mamy znać najlepszy ruch w stanie \(s'\)? Tutaj z pomocą przychodzi nam idea znana z programowania dynamicznego. Zamiast stosować tę formułę rekurencyjnie to wartość \( \max_{a'}Q(s', a') \) podejrzymy prosto z Q-Tabeli.
+
+Możemy również rozwinąć ten wzór aby lepiej zrozumieć co tak naprawdę tutaj obliczamy. Jeśli jest to formuła dla \( Q(s, a) \), to możemy ją również zastosować jako podstawienie za \( Q(s', a') \). Otrzymujemy wtedy:
+
+\[ Q(s, a) \leftarrow  r(s, a) + r(s', a') + \max_{a''}Q(s'', a'')\]
+
+Warto zaznaczyć że \(r(s', a')\) oznacza tutaj nagrodę jaką dostaniemy, jeśli w stanie \(s'\) wykonamy akcję o największej wartości, niekoniecznie największej natychmiastowej nagrodzie. 
+
+Możemy kontynuować ten proces, aż w końcu dostaniemy takie rozwinięcie:
+
+\[ Q(s, a) \leftarrow  r(s, a) + r(s', a') + r(s'', a'') + r(s''', a''') +  r(s'''', a'''') + ... \]
+
+Możemy więc zauważyć, że ten wzór tak naprawdę wylicza sumę nagród jakie dostaniemy wykonując w każdym stanie akcje o największej wartości. Innymi słowy udało nam się uwzględnić przyszłe stany i nagrody w obliczeniu wartości pary stan-akcja.
+
+Pojawia się tutaj pewien problem. Czy agent powinien wartościować nagrody odległe w czasie tak samo jak te które może otrzymać natychmiast. Możliwe że istnieją sytuacje, kiedy takie zachowanie jest pożądane, ale najczęściej chcemy aby agent preferował otrzymać nagrodę szybciej niż później. Aby uzyskać taki efekt, dodamy do naszego wzoru nowy parametr - współczynnik dyskontowania $\gamma$.
+
+\bibliography{references}
 
 \end{document}
