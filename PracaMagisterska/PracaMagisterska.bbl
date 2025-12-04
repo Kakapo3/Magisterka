@@ -1,0 +1,67 @@
+\begin{thebibliography}{10}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Bratko(2018)]{bratko2018alphazero}
+Ivan Bratko.
+\newblock Alphazero--what’s missing?
+\newblock \emph{Informatica}, 42\penalty0 (1), 2018.
+
+\bibitem[Granter et~al.(2017)Granter, Beck, and Papke~Jr]{granter2017alphago}
+Scott~R Granter, Andrew~H Beck, and David~J Papke~Jr.
+\newblock Alphago, deep learning, and the future of the human microscopist.
+\newblock \emph{Archives of pathology \& laboratory medicine}, 141\penalty0
+  (5):\penalty0 619--621, 2017.
+
+\bibitem[Hsu(1999)]{hsu1999ibm}
+Feng-hsiung Hsu.
+\newblock Ibm's deep blue chess grandmaster chips.
+\newblock \emph{IEEE micro}, 19\penalty0 (2):\penalty0 70--81, 1999.
+
+\bibitem[Samuel(1959)]{samuel1959some}
+Arthur~L Samuel.
+\newblock Some studies in machine learning using the game of checkers.
+\newblock \emph{IBM Journal of research and development}, 3\penalty0
+  (3):\penalty0 210--229, 1959.
+
+\bibitem[Silver et~al.(2017)Silver, Hubert, Schrittwieser, Antonoglou, Lai,
+  Guez, Lanctot, Sifre, Kumaran, Graepel, et~al.]{silver2017mastering}
+David Silver, Thomas Hubert, Julian Schrittwieser, Ioannis Antonoglou, Matthew
+  Lai, Arthur Guez, Marc Lanctot, Laurent Sifre, Dharshan Kumaran, Thore
+  Graepel, et~al.
+\newblock Mastering chess and shogi by self-play with a general reinforcement
+  learning algorithm.
+\newblock \emph{arXiv preprint arXiv:1712.01815}, 2017.
+
+\bibitem[Sutton et~al.(1998)Sutton, Barto, et~al.]{sutton1998reinforcement}
+Richard~S Sutton, Andrew~G Barto, et~al.
+\newblock \emph{Reinforcement learning: An introduction}, volume~1.
+\newblock MIT press Cambridge, 1998.
+
+\bibitem[Tesauro et~al.(1995)]{tesauro1995temporal}
+Gerald Tesauro et~al.
+\newblock Temporal difference learning and td-gammon.
+\newblock \emph{Communications of the ACM}, 38\penalty0 (3):\penalty0 58--68,
+  1995.
+
+\bibitem[Thorndike(2017)]{thorndike2017animal}
+Edward Thorndike.
+\newblock \emph{Animal intelligence: Experimental studies}.
+\newblock Routledge, 2017.
+
+\bibitem[Watkins and Dayan(1992)]{watkins1992q}
+Christopher~JCH Watkins and Peter Dayan.
+\newblock Q-learning.
+\newblock \emph{Machine learning}, 8\penalty0 (3):\penalty0 279--292, 1992.
+
+\bibitem[Zahavy et~al.(2023)Zahavy, Veeriah, Hou, Waugh, Lai, Leurent, Tomasev,
+  Schut, Hassabis, and Singh]{zahavy2023diversifying}
+Tom Zahavy, Vivek Veeriah, Shaobo Hou, Kevin Waugh, Matthew Lai, Edouard
+  Leurent, Nenad Tomasev, Lisa Schut, Demis Hassabis, and Satinder Singh.
+\newblock Diversifying ai: Towards creative chess with alphazero.
+\newblock \emph{arXiv preprint arXiv:2308.09175}, 2023.
+
+\end{thebibliography}

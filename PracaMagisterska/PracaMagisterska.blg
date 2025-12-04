@@ -6,45 +6,45 @@ The style file: plainnat.bst
 Reallocating 'name_of_file' (item size: 1) to 11 items.
 Database file #1: references.bib
 Warning--can't use both volume and number fields in sutton1998reinforcement
-You've used 9 entries,
+You've used 10 entries,
             2773 wiz_defined-function locations,
-            646 strings with 6345 characters,
-and the built_in function-call counts, 4307 in all, are:
-= -- 352
-> -- 313
-< -- 6
-+ -- 108
-- -- 99
-* -- 366
-:= -- 703
-add.period$ -- 27
-call.type$ -- 9
-change.case$ -- 55
-chr.to.int$ -- 9
-cite$ -- 19
-duplicate$ -- 181
-empty$ -- 316
-format.name$ -- 109
-if$ -- 864
+            654 strings with 6445 characters,
+and the built_in function-call counts, 4763 in all, are:
+= -- 396
+> -- 334
+< -- 7
++ -- 115
+- -- 105
+* -- 403
+:= -- 771
+add.period$ -- 30
+call.type$ -- 10
+change.case$ -- 60
+chr.to.int$ -- 10
+cite$ -- 21
+duplicate$ -- 201
+empty$ -- 356
+format.name$ -- 118
+if$ -- 960
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 11
-newline$ -- 53
-num.names$ -- 36
-pop$ -- 113
+missing$ -- 12
+newline$ -- 58
+num.names$ -- 40
+pop$ -- 121
 preamble$ -- 1
-purify$ -- 48
+purify$ -- 52
 quote$ -- 0
-skip$ -- 143
+skip$ -- 159
 stack$ -- 0
-substring$ -- 106
-swap$ -- 11
+substring$ -- 133
+swap$ -- 12
 text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 89
+type$ -- 100
 warning$ -- 1
-while$ -- 35
+while$ -- 40
 width$ -- 0
-write$ -- 121
+write$ -- 134
 (There was 1 warning)

@@ -6,6 +6,7 @@
 \usepackage[polish]{babel}         % Język polski
 \usepackage{dirtytalk}
 \usepackage[round,longnamesfirst]{natbib}
+\usepackage{float}
 \bibliographystyle{plainnat}
 
 % USTAWIENIA STRONY
@@ -42,6 +43,9 @@
 
 \maketitle
 
+\tableofcontents
+\newpage 
+
 \section{Wstęp}
 
 \subsection{Motywacja}
@@ -50,7 +54,7 @@ W dzisiejszych czasach nieiwele jest dziedzin nauki które rozwijają się tak s
 
 \subsection{Nawiązanie do natury}
 
-Wspomniane było wcześniej że nauczanie przez wzmacnianie jest powiązane z tym jak zwierzęta uczą się na podstawie doświadczeń. Możemy to również zaobserwować u ludzi. Jeżeli dziedzko dodknie raz gorącej kuchenki i się oparzy, to najprawdopodobniej więcej już tego nie zrobi. Innymi słowy, podjęło ono pewną akcję, za którą zostało "ukarane", więc w przyszłości będzie tego unikać. Z drugiej strony jeżeli dziedzko znajdzie szafkę ze słodyczami, to będzie chodzić tam częściej, wiedząc że za każdym razem czekają tam na nie słodycze. Mówiąc inaczej, wykonało ono pewną akcję i dostało za to "nagrodę", więc w przyszłości będzie próbowało powtórzyć tę akcję.
+Wspomniane było wcześniej że nauczanie przez wzmacnianie jest powiązane z tym jak zwierzęta uczą się na podstawie doświadczeń. Możemy to również zaobserwować u ludzi. Jeżeli dziecko dotknie raz gorącej kuchenki i się oparzy, to najprawdopodobniej więcej już tego nie zrobi. Innymi słowy, podjęło ono pewną akcję, za którą zostało "ukarane", więc w przyszłości będzie tego unikać. Z drugiej strony jeżeli dziecko znajdzie szafkę ze słodyczami, to będzie chodzić tam częściej, wiedząc że za każdym razem czekają tam na nie słodycze. Mówiąc inaczej, wykonało ono pewną akcję i dostało za to "nagrodę", więc w przyszłości będzie próbowało powtórzyć tę akcję.
 
 Analogicznie możemy spojrzeć na to jak zachowują się zwierzeta. Wyobraźmy sobię mysz która wkrada się do domu, szukając pożywienia. Jeżeli natrafi ona na groźnego kota, to od tej pory będzie już wiedzieć aby do tego domu nie chodzić. Ale czy na pewno? Może kot strzeże wartościowej spiżarni? Może nagroda byłaby wystarczająca aby mysz podjęła się tego ryzyka?
 
@@ -132,7 +136,7 @@ W biologii polityce odpowiada zjawisko, które w psychologia nazywa modelem "bod
 
 System nagród definiuje cel problemu nauczania przez wzmacnianie. Po każdej akcji agent otrzymuje nagrodę, która jest reprezentowana przez liczbę. Jeżeli agent wykonuje akcję która pomaga mu zrealizować cel to dostaje większą nagrodę niż za akcje które go od celu oddalają. Całym zadaniem agenta jest zmaksymalizowanie wartości nagród które otrzymuje w czasie.
 
-W biologii jako nagrody o kary odpowiadają uczuciom przyjemności oraz bólowi. Jeżeli organizm odczuwa przujemność to jest dla niego sygnał że wykonał dobrą rzecz. Jeżeli odczuje ból to oznacza że wykonał błąd i powinien w przyszłości tej czynności unikać.
+W biologii jako nagrody o kary odpowiadają uczuciom przyjemności oraz bólowi. Jeżeli organizm odczuwa przyjemność to jest dla niego sygnał że wykonał dobrą rzecz. Jeżeli odczuje ból to oznacza że wykonał błąd i powinien w przyszłości tej czynności unikać.
 
 \subsection{Funkcja wartości}
 
@@ -246,6 +250,8 @@ Powyżej została przedstawiona przykładowa Q-Tabela dla pewnego środowiska kt
 
 Q-Tabela z początku nie będzie oczywiście optymalna, częstym podejściem jest zaczynanie z Q-Tabelą zawierającą same zera. Jak więc możemy poprawiać jej wartości na podstawie nowych doświadczeń? Zacznijmy najpierw od najprostszego pomysłu i stopniowo będziemy go ulepszać.
 
+\subsubsection{Natychmiastowa nagroda}
+
 Weźmy najprostszy pomysł, gdzie zastępujemy wartość właśnie zdobytą nagrodą:
 
 \[ Q(s, a) \leftarrow r(s, a) \]
@@ -253,6 +259,8 @@ Weźmy najprostszy pomysł, gdzie zastępujemy wartość właśnie zdobytą nagr
 \( Q(s, a) \) - Obecna wartość dla stanu \(s\) i akcji \(a\)
 
 \( r(s, a) \) - Nagroda za wykonanie akcji \(a\)  w stanie \(s\) 
+
+\subsubsection{Przyszłe nagrody}
 
 Jest to początek, ale podczas uczenia powinniśmy wziąć więcej aspektów pod uwagę niż tylko natychmastowa nagroda. Jak na razie nie uwzględniamy przyszłych stanów, do których wybór może nas dobrowadzić. Dodajmy więc wyraz, który reprezentuje wartość najlepszej akcji w następnym stanie, czyli w stanie \(s'\) 
 
@@ -274,8 +282,94 @@ Możemy kontynuować ten proces, aż w końcu dostaniemy takie rozwinięcie:
 
 Możemy więc zauważyć, że ten wzór tak naprawdę wylicza sumę nagród jakie dostaniemy wykonując w każdym stanie akcje o największej wartości. Innymi słowy udało nam się uwzględnić przyszłe stany i nagrody w obliczeniu wartości pary stan-akcja.
 
+\subsubsection{Waga przyszłych nagród - Współczynnik dyskontowania}
+
 Pojawia się tutaj pewien problem. Czy agent powinien wartościować nagrody odległe w czasie tak samo jak te które może otrzymać natychmiast. Możliwe że istnieją sytuacje, kiedy takie zachowanie jest pożądane, ale najczęściej chcemy aby agent preferował otrzymać nagrodę szybciej niż później. Aby uzyskać taki efekt, dodamy do naszego wzoru nowy parametr - współczynnik dyskontowania $\gamma$.
 
+\[ Q(s, a) \leftarrow  r(s, a) + \gamma * \max_{a'}Q(s', a')\]
+
+W jaki sposób zmniejsza to wpływ nagród bardziej oddalonych w czasie? Po rozwinięciu formuły tak jak wcześniej otrzymujemy:
+
+\[ Q(s, a) \leftarrow  r(s, a) + \gamma * r(s', a') + \gamma ^ 2 * r(s'', a'') + \gamma ^ 3 * r(s''', a''') +  \gamma ^ 4 * r(s'''', a'''') + ... \]
+
+Możemy zauważyć, że kolejne nagrody są ważone przez kolejne potęgi współczynnika dyskontowania. Dla przykładu, jeżeli $\gamma = \frac{1}{2}$, to podczas obliczania wartości akcji, nagroda odległa o 2 ruchy będzie warta $\frac{1}{2}$ nagrody natychmiastowej, odległa o 3 ruchy będzie warta $\frac{1}{4}$ itd.
+
+Można również sprawdzić co dzieje się dla przypadków granicznych. Dla $\gamma = 1$ agent przykłada taką samą wagę do każdej nagrody, nie ważne jak bardzo oddalonej w czasie. Dla $\gamma = 0$ znów nie bierze przyszłych nagród pod uwagę i rozpatruje jedynie natychmiastową nagrodę.
+
+\subsubsection{Współczynnik uczenia}
+
+Kolejnym elementem który dodamy do wzoru to współczynnik uczenia $\alpha$. Obecnie agent całkowicie zapomina o starej wartości w Q-Tabeli i zastępuje ją nową wartością. Niesie to za sobą kilka problemów. Po pierwsze nowa wartość byłaby tylko jedną, najnowszą próbką, która może być obarczona różnymi błędami. W nauczaniu przez wzmacnianie checmy stopniowo ulepszać politykę, tak aby stabilnie zbliżała się do optymalnej polityki (często oznaczanej jako \(Q ^ *\)). Zastępowanie starej wartości nową całkowicie eliminuje tę stabilność i prowadzi do chaotyczności. Zostało również udowodnione, że polityka \(Q\) zbiega do polityki optymalnej  \(Q ^ *\) jedynie gdy  $\alpha$ maleje lub jest małe. \citet{watkins1992q}
+
+Zmodyfikujmy więc wzór tak aby wziąć pod uwagę poprzednią wartość w Q-Tabeli
+
+\[ Q(s, a) \leftarrow  (1-\alpha) * Q(s, a) + \alpha * (r(s, a) + \gamma * \max_{a'}Q(s', a'))\]
+
+Modyfikując współczynnik $\alpha$ możemy wybrać wagę nowej wartości w porównaniu do starej, gdzie przykładowo $\alpha = 0.1$ oznacza że agent jako nową wartość bierze sumę starej wartości z wagą \(0.9\) i nowej wartości z wagą \(0.1\). 
+
+Możemy znów zbadać przypadki graniczne. $\alpha = 0$ oznacza że agent nie bierze nowej w ogóle pod uwagę (czyli nic się nie uczy), $\alpha = 1$ oznacza że agent zamienia całkowicie starą wartość na nową.
+
+\subsubsection{Równanie Bellmana}
+
+W ten sposób otrzymaliśmy równanie Bellmana, jeden z najważniejszych konceptów nauczania przez wzmacnianie. Pozwala on agentowi na ulepszanie funkcji wartości na podstawie nowych doświadczeń. Podczas uczenia, po każdym kroku agent będzie obliczał nową wartość właśnie za pomocą tego wzoru.
+
+Często można spotkać się również z równaniem Bellmana w takiej formie:
+
+ \[ Q(s, a) \leftarrow  Q(s, a) + \alpha * ( r(s, a) +  \gamma * Q(s', a') - Q(s, a) ) \]
+
+Jednak można łatwo pokazać że jest ono równoważne z równaniem które wyprowadziliśmy wcześniej.
+
+ \[ Q(s, a) \leftarrow  Q(s, a) + \alpha * ( r(s, a) +  \gamma * \max_{a'}Q(s', a') - Q(s, a) ) \] 
+\[ Q(s, a) \leftarrow  Q(s, a) + \alpha * r(s, a) + \alpha * \gamma * \max_{a'}Q(s', a') - \alpha * Q(s, a) \] 
+\[ Q(s, a) \leftarrow  Q(s, a) - \alpha * Q(s, a) + \alpha * r(s, a) + \alpha * \gamma * \max_{a'}Q(s', a')  \]
+\[ Q(s, a) \leftarrow  (1-\alpha) * Q(s, a) + \alpha * (r(s, a) + \gamma * \max_{a'}Q(s', a'))\]
+
+\section{Eksploracja, Eksploatacja}
+
+Ważnym aspektem nauczania przez wzmacnianie jest mechanizm przez który agent decyduje kiedy podczas uczenia ma on wybrać najlepszy ruch. Błędem byłoby, żeby agent podążał ciągle najlepszą według siebie ścieżką, gdzyż nie odkrył by nigdy potencjalnie lepszych ścieżek. Nie powinien on również ciągle chodzić losowo, chcemy aby wykorzystywał on wiedzę jaką zdobył i na jej podstawie uczył się dalej. Musimy więc znaleść balans eksploracji, czyli wybierania losowych ścieżek, a eksploatacji, czyli wybierania najlepszej akcji. Rozwiązaniem tej sytuacji współczynnik eksploracji $\epsilon$.
+
+\subsection{Współczynnik eksploracji}
+
+Współczynnik eksploracji przyjmuje wartości od 0 do 1. Mówi on agentowi jaką część ruchów ma wykonywać losowo, a jaką część ma wykonywać zgodnie z najlepszą wartością zgodnie ze swoją polityką. Im wyższy współczynnik, tym częściej agent będzie wykonywał akcje losowo. Dokładniej, $\epsilon$ oznacza procent akcji które agent ma wykonywać losowo.
+
+\subsection{Zmiana współczynnika eksploracji podczas uczenia}
+
+Współczynnik eksploracji powinien zmieniać się w trakcie uczenia. Uczenia zaczyna się ze współczynnikiem eksporacji bliskim 1 - agent jeszcze nic nie wie o środowisku, więc powinien odkrywać jak nawięcej może. Z czasem, jak agent nabiera wiedzy współczynnik powinien się zmniejszać, tak aby agent używał wiedzy którą zgromadził.
+
+Musimy więc znaleść sposób na zmniejszanie współczynnika eksploracji w trakcie uczenia. Istnieje wiele podejść, których użyteczność zależy ok konkretnego przypadku. Dla przykładu najprostrzym sposobem jest liniowe zmniejszanie współczynnika.
+
+ \[  \epsilon(n) =  1-\frac{n}{N} \]
+
+\(n\) - Obecny krok
+
+\(N\) - Całkowita liczba kroków podczas uczenia
+
+Kolejnym możliwym sposobem jest zmniejszanie współczynnika $\epsilon$, tak aby agent spędził więcej czasu na eksploatację, innymi słowy aby częściej podążał najlepszą według siebie ścieżką. Dla takich przypadków nada się funkcja która szybciej maleje.
+
+ \[  \epsilon(n) =  t^\frac{n}{N} \]
+
+\(t\) - Docelowy współczynnik $\epsilon$ w kroku \(N\)
+
+Z drugiej strony jeżeli checmy aby agent spędził więcej czasu odkrywając środowisko powinniśmy użyć funkcji która dłużej utrzymuje wyższą wartość i maleje w późniejszym etapie nauczania.
+
+ \[  \epsilon(n) = -(b^{(n/N-1)})+1 \]
+
+\(b\) - Współczynnik definiujący kształt funkcji, im większy tym dłużej $\epsilon$ utrzyma się na wysokim poziomie
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.5]{Images/Explo.png}
+    \caption{Wykresy funkcji wygenerowane za pomocą programu desmos. W tym przypadku przyjęte zostało N=1 aby lepiej przedstawić kształt krzywych.}
+    \label{fig:explo}
+\end{figure}
+
+
+\section{Polityka jako sieć neuronowa - Deep Reinforcement Learning}
+
+W poprzedich rodziałach omawialiśmy czym jest polityka oraz wspomniane było że może ona przyjmować różne formy. Do tej pory omówiliśmy jedną z nich - Q-Tabelę. W tym rodziale przedstawione zostanie inne podejście - wykorzystanie sieci neuronowych.
+
+\subsection{Deep Q-Network}
+
+Głębokie nauczanie przez wzmacnianie (and. Deep Reinforcement Learning - DRL) jest w wielu aspektach identyczne do nauczania które do tej pory omówiliśmy. Zasadniczą różnicą jest polityka. Dalej ma ona tę samą ideę - w trakcie uczenia jest doskonalona i na podstawie doświaczeń dla danego stanu zwraca akcję.
 \bibliography{references}
 
 \end{document}
