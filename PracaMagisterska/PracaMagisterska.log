@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.5.17)  5 DEC 2025 00:39
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.5.17)  24 DEC 2025 00:25
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -374,6 +374,10 @@ File: l3backend-pdftex.def 2025-04-14 L3 backend support: PDF output (pdfTeX)
 ) (PracaMagisterska.aux
 Package babel Info: 'polish' activates 'polish' shorthands.
 (babel)             Reported  on input line 9.
+
+
+LaTeX Warning: Label `fig:explo' multiply defined.
+
 )
 \openout1 = `PracaMagisterska.aux'.
 
@@ -488,23 +492,23 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 [1
 
 {C:/Users/Kacper/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/Kac
-per/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}])
+per/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}]
+
+[2])
 \tf@toc=\write4
 \openout4 = `PracaMagisterska.toc'.
 
 
 
-[2]
-
 [3]
+
+[4]
 Overfull \hbox (2.14536pt too wide) in paragraph at lines 78--79
 []\T1/bch/m/n/12 Kolejn¡ dzie-dzin¡ na-uki która przy-czy-niªa si¦ do roz-woju 
 na-ucza-nia przez wzmac-
  []
 
 
-
-[4]
 
 [5]
 
@@ -518,51 +522,147 @@ na-ucza-nia przez wzmac-
 
 [10]
 
+[11]
+
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
 
-[11]
+[12]
 Underfull \hbox (badness 10000) in paragraph at lines 269--270
 
  []
 
 
 
-[12]
-
 [13]
 
 [14]
 
 [15]
-<Images/Explo.png, id=298, 825.0825pt x 405.01312pt>
+
+[16]
+<Images/Explo.png, id=362, 825.0825pt x 405.01312pt>
 File: Images/Explo.png Graphic file (type png)
 <use Images/Explo.png>
 Package pdftex.def Info: Images/Explo.png  used on input line 360.
 (pdftex.def)             Requested size: 412.54024pt x 202.50606pt.
 
 
-[16] (PracaMagisterska.bbl
+[17]
 
-[17 <./Images/Explo.png>])
+[18 <./Images/Explo.png>]
 
-[18] (PracaMagisterska.aux)
+[19]
+Overfull \hbox (0.7913pt too wide) in paragraph at lines 412--413
+\T1/bch/m/n/12 Jednym z naj-wi¦k-szych pro-ble-mów na-ucza-nia gª¦-bo-kiego jes
+t ogólna nie-sta-bil-no±¢ ucze-
+ []
+
+
+Overfull \hbox (7.81126pt too wide) in paragraph at lines 416--417
+\T1/bch/m/n/12 Popularnym spo-so-bem na zwi¦k-sze-nie sta-bil-no-±ci na-ucza-ni
+a gªe-bo-kiego jest u»y-cie dwóch
+ []
+
+
+
+[20]
+
+[21]
+<Images/plansza_przyklad.png, id=388, 603.0028pt x 603.75563pt>
+File: Images/plansza_przyklad.png Graphic file (type png)
+<use Images/plansza_przyklad.png>
+Package pdftex.def Info: Images/plansza_przyklad.png  used on input line 434.
+(pdftex.def)             Requested size: 301.50066pt x 301.87708pt.
+<Images/taxi.png, id=389, 96.36pt x 96.36pt>
+File: Images/taxi.png Graphic file (type png)
+<use Images/taxi.png>
+Package pdftex.def Info: Images/taxi.png  used on input line 441.
+(pdftex.def)             Requested size: 48.17987pt x 48.17987pt.
+<Images/passanger2.png, id=390, 89.58469pt x 88.83188pt>
+File: Images/passanger2.png Graphic file (type png)
+<use Images/passanger2.png>
+Package pdftex.def Info: Images/passanger2.png  used on input line 442.
+(pdftex.def)             Requested size: 44.79222pt x 44.41582pt.
+<Images/destination.png, id=391, 98.61844pt x 97.86563pt>
+File: Images/destination.png Graphic file (type png)
+<use Images/destination.png>
+Package pdftex.def Info: Images/destination.png  used on input line 443.
+(pdftex.def)             Requested size: 49.30908pt x 48.93268pt.
+<Images/wall.png, id=392, 95.6072pt x 96.36pt>
+File: Images/wall.png Graphic file (type png)
+<use Images/wall.png>
+Package pdftex.def Info: Images/wall.png  used on input line 444.
+(pdftex.def)             Requested size: 47.80347pt x 48.17987pt.
+<Images/spawnpoint.png, id=393, 96.36pt x 94.85437pt>
+File: Images/spawnpoint.png Graphic file (type png)
+<use Images/spawnpoint.png>
+Package pdftex.def Info: Images/spawnpoint.png  used on input line 445.
+(pdftex.def)             Requested size: 48.17987pt x 47.42706pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 441--446
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 441--446
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 441--446
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 441--446
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 441--446
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 441--446
+
+ []
+
+
+
+[22 <./Images/plansza_przyklad.png>] (PracaMagisterska.bbl
+
+[23 <./Images/taxi.png> <./Images/passanger2.png> <./Images/destination.png> <.
+/Images/wall.png> <./Images/spawnpoint.png>])
+
+[24] (PracaMagisterska.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-04-14>
  ***********
-Package rerunfilecheck Info: File `PracaMagisterska.out' has not changed.
-(rerunfilecheck)             Checksum: B9DAF1D80981E01F453E2A76C903166B;6514.
+
+
+LaTeX Warning: There were multiply-defined labels.
+
+
+Package rerunfilecheck Warning: File `PracaMagisterska.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `PracaMagisterska.out':
+(rerunfilecheck)             Before: FC6C4AD0532F5465064C929294538386;8475
+(rerunfilecheck)             After:  0F97EA6D19E7B84BD466F749147E8779;8598.
  ) 
 Here is how much of TeX's memory you used:
- 12366 strings out of 469941
- 193108 string characters out of 5468946
- 594068 words of memory out of 5000000
- 38922 multiletter control sequences out of 15000+600000
+ 12443 strings out of 469941
+ 194766 string characters out of 5468946
+ 594020 words of memory out of 5000000
+ 38979 multiletter control sequences out of 15000+600000
  657352 words of font info for 85 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 69i,8n,79p,913b,600s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 69i,8n,79p,913b,601s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/Kacper/AppData/Local/Programs/MiKTeX/fonts/type1/bitstrea/charter/b
 chb8a.pfb><C:/Users/Kacper/AppData/Local/Programs/MiKTeX/fonts/type1/bitstrea/c
 harter/bchr8a.pfb><C:/Users/Kacper/AppData/Local/Programs/MiKTeX/fonts/type1/bi
@@ -576,9 +676,9 @@ rs/Kacper/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.p
 fb><C:/Users/Kacper/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/c
 m/cmsy6.pfb><C:/Users/Kacper/AppData/Local/Programs/MiKTeX/fonts/type1/public/a
 msfonts/cm/cmsy8.pfb>
-Output written on PracaMagisterska.pdf (18 pages, 272293 bytes).
+Output written on PracaMagisterska.pdf (24 pages, 306965 bytes).
 PDF statistics:
- 380 PDF objects out of 1000 (max. 8388607)
- 70 named destinations out of 1000 (max. 500000)
- 302 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 483 PDF objects out of 1000 (max. 8388607)
+ 90 named destinations out of 1000 (max. 500000)
+ 428 words of extra memory for PDF output out of 10000 (max. 10000000)
 

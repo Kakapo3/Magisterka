@@ -5,31 +5,30 @@ Reallocating 'name_of_file' (item size: 1) to 9 items.
 The style file: plainnat.bst
 Reallocating 'name_of_file' (item size: 1) to 11 items.
 Database file #1: references.bib
-Warning--can't use both volume and number fields in sutton1998reinforcement
 You've used 10 entries,
             2773 wiz_defined-function locations,
-            654 strings with 6445 characters,
-and the built_in function-call counts, 4763 in all, are:
-= -- 396
-> -- 334
+            655 strings with 6505 characters,
+and the built_in function-call counts, 4720 in all, are:
+= -- 397
+> -- 326
 < -- 7
-+ -- 115
-- -- 105
-* -- 403
-:= -- 771
-add.period$ -- 30
++ -- 112
+- -- 102
+* -- 389
+:= -- 764
+add.period$ -- 31
 call.type$ -- 10
 change.case$ -- 60
 chr.to.int$ -- 10
-cite$ -- 21
-duplicate$ -- 201
-empty$ -- 356
-format.name$ -- 118
-if$ -- 960
+cite$ -- 20
+duplicate$ -- 200
+empty$ -- 355
+format.name$ -- 117
+if$ -- 955
 int.to.chr$ -- 1
 int.to.str$ -- 1
 missing$ -- 12
-newline$ -- 58
+newline$ -- 59
 num.names$ -- 40
 pop$ -- 121
 preamble$ -- 1
@@ -38,13 +37,12 @@ quote$ -- 0
 skip$ -- 159
 stack$ -- 0
 substring$ -- 133
-swap$ -- 12
-text.length$ -- 1
+swap$ -- 10
+text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 100
-warning$ -- 1
+warning$ -- 0
 while$ -- 40
 width$ -- 0
-write$ -- 134
-(There was 1 warning)
+write$ -- 136

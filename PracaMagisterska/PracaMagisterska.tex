@@ -335,7 +335,7 @@ Współczynnik eksploracji przyjmuje wartości od 0 do 1. Mówi on agentowi jak�
 
 Współczynnik eksploracji powinien zmieniać się w trakcie uczenia. Uczenia zaczyna się ze współczynnikiem eksporacji bliskim 1 - agent jeszcze nic nie wie o środowisku, więc powinien odkrywać jak nawięcej może. Z czasem, jak agent nabiera wiedzy współczynnik powinien się zmniejszać, tak aby agent używał wiedzy którą zgromadził.
 
-Musimy więc znaleść sposób na zmniejszanie współczynnika eksploracji w trakcie uczenia. Istnieje wiele podejść, których użyteczność zależy ok konkretnego przypadku. Dla przykładu najprostrzym sposobem jest liniowe zmniejszanie współczynnika.
+Musimy więc znaleść sposób na zmniejszanie współczynnika eksploracji w trakcie uczenia. Istnieje wiele podejść, których użyteczność zależy od konkretnego przypadku. Dla przykładu najprostrzym sposobem jest liniowe zmniejszanie współczynnika.
 
  \[  \epsilon(n) =  1-\frac{n}{N} \]
 
@@ -369,7 +369,82 @@ W poprzedich rodziałach omawialiśmy czym jest polityka oraz wspomniane było �
 
 \subsection{Deep Q-Network}
 
-Głębokie nauczanie przez wzmacnianie (and. Deep Reinforcement Learning - DRL) jest w wielu aspektach identyczne do nauczania które do tej pory omówiliśmy. Zasadniczą różnicą jest polityka. Dalej ma ona tę samą ideę - w trakcie uczenia jest doskonalona i na podstawie doświaczeń dla danego stanu zwraca akcję.
+Głębokie nauczanie przez wzmacnianie (and. Deep Reinforcement Learning - DRL) jest w wielu aspektach identyczne do nauczania które do tej pory omówiliśmy. Zasadniczą różnicą jest polityka. Dalej ma ona tę samą ideę - w trakcie uczenia jest doskonalona i na podstawie doświaczeń dla danego stanu zwraca akcję. Jednak zamiast sprawdzania wartości w Q-Tabeli, stan środowiska zostaje przepuszczony przez sieć neuronową, zwaną Deep Q-Network, która na wyjściu zwraca najlepszy według siebie stan.
+
+\subsection{Dlaczego sieć neuronowa?}
+
+Mimo że Q-Tabela sprawdza się bardzo dobrze, ma ona kilka sporych ograniczenie. Jednym z największych jest fakt, że przetrzymuje ona jedynie dyskretne stany. Nie jest to problemem jeżeli nasze środowisko jest dyskretne (np. gra w warcaby), ale problem się pojawia dla środowisk ze stanami ciągłymi. W prawdzimym życiu najczęściej spotkamy się ze środowiskami które zawierają elementy przyjmujące wartości z pewnego zakresu (np. dla robota sprzątającego jego pozycja, poziom baterii itd.).
+
+Rozwiązaniem tego problemu jest wykorzystanie sieci neuronowej. Metoda DQL (Deep Q-Learning), powstała aby pokonać ograniczenia Q-Tabeli.
+
+\subsubsection{Środowiska ciągłe}
+
+Pierwszym z nich jest problem który już omówiliśmy - środowiska ze stanami ciągłymi. Istnieją sposoby aby zastosować Q-Tabelę do takich środowisk, ale niosą one za sobą pewne koszty. Jednym ze sposobów jest dyskretyzacja - podzielenie ciągłego stanu na dyskretne części (np. podzielenie dwuwymiarowej powierchni na dyskretne kwadraty i traktowanie każdego jako osobną pozycję agenta). Problemem jest tutaj utrata dokładności informacji o stanie. Można dzielić stan na coraz to mniejsze części, ale powoduje to szybki wzrost możliwej liczby stanów, coś z czym Q-Tabela ma duże problemy.
+
+Dla nauczania głębokiego z użyciem sieci neuronowej środowiska ciągłe nie są żadnym problemem, a w zasadzie są jego mocną stroną.
+
+\subsubsection{Przewidywanie dla podobnych stanów}
+
+Kolejną dużą zaletą nauczania głębokiego jest fakt, że sieć neuronowa potrafi rozpoznać kiedy stany są do siebie podobne. Dla Q-Tabeli, jeżeli stany różnią się w jakikolwiek sposób, nawet najmniejszy i nieistotny (np. robot sprzątający który ma 90\% baterii a 89\%), to są to dla niej kompletnie różne stany dla których musi się osobno uczyć jak się zachowywać.
+
+Sieć neuronowa ma tę zaletę, że potrafi rozpoznać podobne stany wejściowe. Jeśli widziała już jakiś stan w przeszłości, to może często na tej podstawie "przewidzieć"~najlepsze akcje dla stanów podobnych, mimo że ich nigdy nie widziała. Oczywiście, nie zawsze takie przewidywania będą poprawne, ale jest to o wiele lepsze niż uczenie się ich od zera.
+
+\subsubsection{Środowiska z dużą liczbą stanów}
+
+Jak wspomniano wcześniej, Q-Tabela nie radzi sobie dobrze ze środowiskami z dużą liczbą stanów. Ze względu na fakt, że musi ona przechowywać każdy możliwy stan osobno, jej rozmiar potrafi urosnąć bardzo szybko. Dokładniej, rozmiar Q-Tabeli dla środowiska zawierającego zbiór możliwych stanów \(S\) i zbiór możliwych akcji \(A\) wynosi \(|S| * |A|\). Dla wielu środowisk, nawet dyskretnych, jest to całkowicie niepraktyczne.
+
+Sieć neuronowa nie ma takiego problemu. Nie musi przechowywać wszystkich możliwych stanów, lecz tylko wagi wyliczone podczas uczenia. Jej rozmiar zależy jednynie od jej budowy, nie od liczby stanów i akcji.
+
+\subsection{Wady nauczania głębokiego}
+
+Nauczanie głębokie nie jest jednak objektywnie "lepszą wersją"~nauczania używającego Q-Tabeli. Zostało ono stworzone, aby można było zastosować nauczania przez wzmacnianie do innych typów środowisk, lecz pomimo wielu zalet, ma ono również swoje wady. 
+
+\subsubsection{Złożoność obliczeniowa}
+
+Mimo że jest bardzo wydajne pamięciowo, potrafi ono być bardzo wymagające pod względem mocy obliczeniowej. Używając Q-Tabeli, jeżeli chcemy odczytać wartość dla pary stan-akcja, to musimy po prostu odczytać pole z tabeli, co jest bardzo szybkie. Jeżeli chcemy jednak odczytać wartość dla pary stan-akcja przy użyciu DQN to musimy wykonać wiele obliczeń, co przy tysiącach iteracji znacząco zwiększa obciążenie i wydłuża proces uczenia.
+
+\subsubsection{Przejrzystość}
+
+Naturanlym problemem pracy z sieciami neuronowymi jest to że są to "czerne skrzynki"~- dostają dane na wejściu i zwracają na ich podstawie wynik, ale najczęściej nie wiemy jak to robią. Możemy zobaczyć informację o wagach, neuronach itd, ale trudno zinterpretować który element odpowiada za co. Z tego powodu, w przypadku problemów z głębokim nauczaniem często trudo jest zdiagnozować w czym leży problem.
+
+\subsubsection{Stabilność}
+
+Jednym z największych problemów nauczania głębokiego jest ogólna niestabilność uczenia w porównaniu do metody Q-Tabeli. Po pierwsze sieć neuronowa działa na aproksymacjach, a nie na dokładnych wartościach. Dodatkowo jedna aktualizacja parametrów wpływa na wyniki wielu możliwych stanów, nawet tych których agent jeszcze nie widział. Ponadto, w przeciwieństwie do Q-Tabeli, nie ma dowodu na zbiezność nauczania DQN, co oznacza że model może oscylować lub całkowicie rozbiegać w trakcie nauczania.
+
+\subsection{Double DQN}
+
+Popularnym sposobem na zwiększenie stabilności nauczania głebokiego jest użycie dwóch sieci neuronowych - jednej bieżącej (ang. online network) i jednej docelowej (ang. target network). Pozwala to rozdzielić ocenę akcji od wyboru akcji. W klasycznym nauczaniu głębokim agent używa tej samej sieci do oceny akcji jak i do jej wyboru. Potrafi to prowadzić do oscylacji polityki, przeszacowywania wartości Q przez funkcję "max"~oraz generalnej niestabilności. Można porównać to do psa który goni swój własny ogon.
+
+Użycie dwóch sieci neuronowych pozwala rozwiązać ten problem. Do wyboru akcji będziemy używać sieci bieżącej, którą będziemy za każdym razem aktualizować. Z drugiej strony, do oceny akcji użyjemy sieci docelowej. Z początku jest ona kopią sieci bieżącej, lecz ona jest aktualizowana tylko co jakiś czas, na przykład po danej liczbie iteracji. Staje się ona wtedy znów kopią sieci bieżącej. W ten sposób mamy stabilny "cel", względem którego uczymy sieć.
+
+\newpage
+
+\section{Gra Taxi}
+
+Do porównania tych metod nauczania wykorzystamy specjalnie zaimplementowaną grę "Taxi", opartą na popularnym problemie nauczania maszynowego.
+
+\subsection{Cel gry}
+
+Rozgrywka odbywa się na prostokątnej planszy. Na planszy wyznaczone są specjalne pola gdzie może pojawić się pasażer oraz jego cel. Celem taksówki jest jak najszybsze przemieszczenie się na pozycję pasażera, zabranie go, przemieszczenie się na pozycję celu i odstawienie pasażera. Jeżeli to się uda to pasażer i cel zmieniają pozycję na inne losowe pola specjalne. Na planszy występują również ściany, które taksówka musi omijać.
+
+\subsection{Przykładowa plansza}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.5]{Images/plansza_przyklad.png}
+    \caption{Przykładowy stan gry taxi. Elementy gry opisane poniżej}
+    \label{fig:explo}
+\end{figure}
+
+\subsection{Elementy gry}
+
+\includegraphics[scale=0.5]{Images/taxi.png} - Taksówka \newline \newline
+\includegraphics[scale=0.5]{Images/passanger2.png} - Pasażer \newline \newline
+\includegraphics[scale=0.5]{Images/destination.png} - Cel \newline \newline
+\includegraphics[scale=0.5]{Images/wall.png} - Ściana \newline \newline
+\includegraphics[scale=0.5]{Images/spawnpoint.png} - Możliwe punkty pojawienia się pasażera i celu \newline \newline
+
+
 \bibliography{references}
 
 \end{document}

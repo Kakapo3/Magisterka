@@ -36,10 +36,11 @@ David Silver, Thomas Hubert, Julian Schrittwieser, Ioannis Antonoglou, Matthew
   learning algorithm.
 \newblock \emph{arXiv preprint arXiv:1712.01815}, 2017.
 
-\bibitem[Sutton et~al.(1998)Sutton, Barto, et~al.]{sutton1998reinforcement}
-Richard~S Sutton, Andrew~G Barto, et~al.
-\newblock \emph{Reinforcement learning: An introduction}, volume~1.
-\newblock MIT press Cambridge, 1998.
+\bibitem[Sutton and Barto(2018)]{sutton1998reinforcement}
+Richard~S. Sutton and Andrew~G. Barto.
+\newblock \emph{Uczenie przez wzmacnianie. Wprowadzenie}.
+\newblock Wydawnictwo Naukowe PWN, Warszawa, 2018.
+\newblock Polskie tłumaczenie: Reinforcement Learning: An Introduction.
 
 \bibitem[Tesauro et~al.(1995)]{tesauro1995temporal}
 Gerald Tesauro et~al.
