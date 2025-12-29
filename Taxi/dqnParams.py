@@ -3,6 +3,8 @@ import torch.optim as optim
 import GameParams
 from collections import deque
 
+import qLearningParams
+
 state_size = 2+2*(len(GameParams.POSSIBLE_SPAWNS)+1) # [px, py, passenger_id, destination_id]
 action_size = 6 # 0 up, 1 right, 2 down, 3 left , 4 pick up, 5 drop
 
@@ -27,7 +29,7 @@ model_target = nn.Sequential(
         )
 model_target.load_state_dict(model.state_dict())
 
-optimizer = optim.Adam(model.parameters(), lr=0.01)
+optimizer = optim.Adam(model.parameters(), lr=qLearningParams.learningRate)
 criterion = nn.MSELoss()
 
 memory = deque(maxlen=50000)

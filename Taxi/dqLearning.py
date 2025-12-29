@@ -85,14 +85,6 @@ def learn():
     loss.backward()
     dqnParams.optimizer.step()
 
-
-def positive_reward_percentage():
-    if len(dqnParams.memory) == 0:
-        return 0.0
-
-    positive_count = sum(1 for m in dqnParams.memory if m[2] > 0)
-    return (positive_count / len(dqnParams.memory)) * 100
-
 def getExploRate(base):
     return max(-(pow(base, GameParams.moveCounter/GameParams.maxMoves - 1)) + 1, dqnParams.minExploRate)
 

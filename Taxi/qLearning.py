@@ -54,11 +54,11 @@ def chooseMove():
 #    qLearningParams.explorationRate -= GameParams.exploRateDiscount
 
 def getReward():
-    if GameParams.passengerDelivered: reward = 100
-    elif qLearningParams.currentState[2] == 0 and qLearningParams.previousState[2] != 0: reward = 50
-    elif GameParams.move == 4 or GameParams.move == 5: reward = -50
-    elif qLearningParams.currentState[0] == qLearningParams.previousState[0] and qLearningParams.currentState[1] == qLearningParams.previousState[1]: reward = -25
-    else: reward = -1
+    if GameParams.passengerDelivered: reward = qLearningParams.RewardEnd
+    elif qLearningParams.currentState[2] == 0 and qLearningParams.previousState[2] != 0: reward = qLearningParams.RewardPickupPassenger
+    elif GameParams.move == 4 or GameParams.move == 5: reward = qLearningParams.RewardIllegalPickupOrDropoff
+    elif qLearningParams.currentState[0] == qLearningParams.previousState[0] and qLearningParams.currentState[1] == qLearningParams.previousState[1]: reward = qLearningParams.RewardMoveIntoWall
+    else: reward = qLearningParams.RewardEmptyMove
     qLearningParams.reward = reward
 
 def learn():

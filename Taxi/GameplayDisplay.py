@@ -15,7 +15,7 @@ def clearScreen():
     screen.fill('Black')
 
 def drawPlayer(x, y):
-    pygame.draw.rect(screen, 'Green', pygame.Rect(x * GameParams.BLOCK,
+    pygame.draw.rect(screen, 'Gold', pygame.Rect(x * GameParams.BLOCK,
                                                   y * GameParams.BLOCK,
                                                   GameParams.BLOCK,
                                                   GameParams.BLOCK))
@@ -26,18 +26,30 @@ def drawPassenger(x, y):
     pygame.draw.circle(screen, 'Blue', ((x + 0.5)*GameParams.BLOCK, (y+0.5)*GameParams.BLOCK), GameParams.BLOCK/2, 0)
 
 def drawDestination(x, y):
-    pygame.draw.rect(screen, 'Yellow', pygame.Rect(x * GameParams.BLOCK,
+    pygame.draw.rect(screen, 'Green', pygame.Rect(x * GameParams.BLOCK,
                                                  y * GameParams.BLOCK,
                                                  GameParams.BLOCK,
                                                  GameParams.BLOCK))
 
 def drawWall(x, y):
-    pygame.draw.rect(screen, 'White', pygame.Rect(x * GameParams.BLOCK,
+    pygame.draw.rect(screen, 'Gray', pygame.Rect(x * GameParams.BLOCK,
                                                  y * GameParams.BLOCK,
                                                  GameParams.BLOCK,
                                                  GameParams.BLOCK))
 
+def drawRespawns(x, y):
+    if [x, y] in GameParams.POSSIBLE_SPAWN_POINTS:
+        pygame.draw.rect(screen, 'Purple', pygame.Rect(y * GameParams.BLOCK,
+                                                 x * GameParams.BLOCK,
+                                                 GameParams.BLOCK,
+                                                 GameParams.BLOCK))
+
 def drawBoardEntities(board):
+    for col in range(len(board)):
+        for row in range(len(board[col])):
+            #continue
+            drawRespawns(row, col)
+
     for col in range(len(board)):
         for row in range(len(board[col])):
             for entity in board[col][row]:
