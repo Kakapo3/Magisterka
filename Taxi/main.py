@@ -104,6 +104,5 @@ def runGameDeepQLearning():
 
     pygame.quit()
 
-
-#runGameQLearning()
-runGameDeepQLearning()
+runGameQLearning()
+#runGameDeepQLearning()
