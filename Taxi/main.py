@@ -99,10 +99,10 @@ def runGameDeepQLearning():
             if event.type == pygame.QUIT:
                 running = False
 
-        print(GameParams.board)
+        #print(GameParams.board)
         #time.sleep(100)
 
     pygame.quit()
 
-runGameQLearning()
-#runGameDeepQLearning()
+#runGameQLearning()
+runGameDeepQLearning()

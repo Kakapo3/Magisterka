@@ -33,6 +33,7 @@ criterion = nn.MSELoss()
 memory = deque(maxlen=50000)
 
 batchSize = 64
+positive_fraction = 0.5
 
 exploRateBase = 100
 minExploRate = 0.1

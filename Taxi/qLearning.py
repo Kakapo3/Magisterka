@@ -1,5 +1,6 @@
 import random
 
+import BFS
 import GameParams
 import GameplayLogic
 import dqLearning
@@ -58,7 +59,8 @@ def getReward():
     elif qLearningParams.currentState[2] == 0 and qLearningParams.previousState[2] != 0: reward = qLearningParams.RewardPickupPassenger
     elif GameParams.move == 4 or GameParams.move == 5: reward = qLearningParams.RewardIllegalPickupOrDropoff
     elif qLearningParams.currentState[0] == qLearningParams.previousState[0] and qLearningParams.currentState[1] == qLearningParams.previousState[1]: reward = qLearningParams.RewardMoveIntoWall
-    else: reward = qLearningParams.RewardEmptyMove
+    else: reward = BFS.getBFSreward(qLearningParams.previousState, qLearningParams.currentState)
+    #print(reward)
     qLearningParams.reward = reward
 
 def learn():

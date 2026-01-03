@@ -37,6 +37,7 @@ board[startingPlayerY][startingPlayerX].append(1)
 board[startingPassengerY][startingPassengerX].append(2)
 board[startingDestinationY][startingDestinationX].append(3)
 
+
 board[0][0].append(4)
 board[3][1].append(4)
 board[4][2].append(4)
