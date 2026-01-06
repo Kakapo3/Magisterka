@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import GameParams
+import qLearningParams
 
 scores = []
 currScore = 0
@@ -17,6 +18,7 @@ def generatePlot():
     print("First 100 average:", sum(scores[:100])/len(scores[:100]))
     print("Total average:", sum(scores) / len(scores))
     print("Last 100 average:", sum(scores[-100:]) / len(scores[-100:]))
+    print("Recorded states:", len(qLearningParams.qTable))
     plt.plot(scores)
     plt.xlabel('Epizod')
     plt.ylabel('Liczba ruchów')

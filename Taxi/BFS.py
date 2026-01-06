@@ -42,10 +42,4 @@ def BFS(source):
 def getBFSreward(prevState, currState):
     oldDistance = BFS([prevState[1], prevState[0]])
     newDistance = BFS([currState[1], currState[0]])
-    #print("OldDistance:", oldDistance)
-    #print("NewDistance:", newDistance)
-    #print(oldDistance, "->", newDistance)
-    if newDistance < oldDistance:
-        return qLearningParams.RewardEmptyMoveGoodDir
-    else:
-        return qLearningParams.RewardEmptyMoveBadDir
+    return oldDistance - qLearningParams.gamma * newDistance

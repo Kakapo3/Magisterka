@@ -6,13 +6,13 @@ currentState = []
 
 reward = 0
 gamma = 0.99
-learningRate = 0.0001
+learningRate = 0.001
 explorationRate = 1
 
-RewardEnd = 50
-RewardPickupPassenger = 20
-RewardIllegalPickupOrDropoff = -10
-RewardMoveIntoWall = -5
+RewardEnd = 100
+RewardPickupPassenger = 50
+RewardIllegalPickupOrDropoff = -50
+RewardMoveIntoWall = -25
 RewardEmptyMove = -1
-RewardEmptyMoveGoodDir = 3
-RewardEmptyMoveBadDir = -3
+RewardEmptyMoveGoodDir = 1
+RewardEmptyMoveBadDir = -1
